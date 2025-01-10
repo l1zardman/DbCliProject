@@ -1,0 +1,12 @@
+/home/lizardman/Uczelnia/BazkiDanych/projekt/DatabasesProjectFinalSln/DbcliCoreUtility/bin/Debug/net8.0/DbcliCoreUtility.deps.json
+/home/lizardman/Uczelnia/BazkiDanych/projekt/DatabasesProjectFinalSln/DbcliCoreUtility/bin/Debug/net8.0/DbcliCoreUtility.dll
+/home/lizardman/Uczelnia/BazkiDanych/projekt/DatabasesProjectFinalSln/DbcliCoreUtility/bin/Debug/net8.0/DbcliCoreUtility.pdb
+/home/lizardman/Uczelnia/BazkiDanych/projekt/DatabasesProjectFinalSln/DbcliCoreUtility/obj/Debug/net8.0/DbcliCoreUtility.csproj.AssemblyReference.cache
+/home/lizardman/Uczelnia/BazkiDanych/projekt/DatabasesProjectFinalSln/DbcliCoreUtility/obj/Debug/net8.0/DbcliCoreUtility.GeneratedMSBuildEditorConfig.editorconfig
+/home/lizardman/Uczelnia/BazkiDanych/projekt/DatabasesProjectFinalSln/DbcliCoreUtility/obj/Debug/net8.0/DbcliCoreUtility.AssemblyInfoInputs.cache
+/home/lizardman/Uczelnia/BazkiDanych/projekt/DatabasesProjectFinalSln/DbcliCoreUtility/obj/Debug/net8.0/DbcliCoreUtility.AssemblyInfo.cs
+/home/lizardman/Uczelnia/BazkiDanych/projekt/DatabasesProjectFinalSln/DbcliCoreUtility/obj/Debug/net8.0/DbcliCoreUtility.csproj.CoreCompileInputs.cache
+/home/lizardman/Uczelnia/BazkiDanych/projekt/DatabasesProjectFinalSln/DbcliCoreUtility/obj/Debug/net8.0/DbcliCoreUtility.dll
+/home/lizardman/Uczelnia/BazkiDanych/projekt/DatabasesProjectFinalSln/DbcliCoreUtility/obj/Debug/net8.0/refint/DbcliCoreUtility.dll
+/home/lizardman/Uczelnia/BazkiDanych/projekt/DatabasesProjectFinalSln/DbcliCoreUtility/obj/Debug/net8.0/DbcliCoreUtility.pdb
+/home/lizardman/Uczelnia/BazkiDanych/projekt/DatabasesProjectFinalSln/DbcliCoreUtility/obj/Debug/net8.0/ref/DbcliCoreUtility.dll
