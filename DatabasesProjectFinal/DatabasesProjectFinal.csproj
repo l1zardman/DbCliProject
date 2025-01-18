@@ -8,7 +8,19 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\ArangoDbLoader\ArangoDbLoader.csproj" />
       <ProjectReference Include="..\DbcliCoreUtility\DbcliCoreUtility.csproj" />
+      <ProjectReference Include="..\DcliCsvFix\DcliCsvFix.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Resources\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="dbcli_config.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>

@@ -7,9 +7,9 @@ namespace DbcliCoreUtility;
 public class DbTasks
 {
     private ArangoDBClient _client;
-    private readonly DbParameters _parameters;
+    private readonly ConfigParameters _parameters;
 
-    public DbTasks(DbParameters parameters, ArangoDBClient client)
+    public DbTasks(ConfigParameters parameters, ArangoDBClient client)
     {
         _client = client;
         _parameters = parameters;
@@ -47,7 +47,6 @@ public class DbTasks
     public async Task<int> DbCliTask2(string nodeName)
     {
         var res = await DbCliTask1(nodeName);
-
         return res.Count;
     }
 
@@ -343,7 +342,7 @@ public class DbTasks
         {
             Query = query
         });
-        
+
         VertexEdgeModel? queryResult = null;
 
         foreach (var record in result.Result)
@@ -355,14 +354,13 @@ public class DbTasks
         {
             Console.WriteLine($"Nodes: {v.Name}");
         }
-        
+
         foreach (var e in queryResult!.Edges)
         {
             Console.WriteLine($"Edges: {e.ToString()}");
         }
 
         return queryResult;
-        
     }
 
     public async Task<int> DbCliTask15(string nodeName1, string nodeName2)
@@ -396,7 +394,7 @@ public class DbTasks
         {
             Query = query
         });
-        
+
         VertexCountModel? queryResult = null;
 
         foreach (var record in result.Result)
@@ -453,20 +451,20 @@ public class DbTasks
         {
             Query = query
         });
-        
+
         int queryResult = -42;
 
         foreach (var record in result.Result)
         {
             queryResult = JsonConvert.DeserializeObject<int>(record.ToString());
         }
-        
+
         return queryResult;
     }
 
-     public async Task<Task18Model> DbCliTask18(string nodeName1, string nodeName2, int depth)
-     {
-         var query = $@"
+    public async Task<Task18Model> DbCliTask18(string nodeName1, string nodeName2, int depth)
+    {
+        var query = $@"
                 LET startNode = FIRST(
                     FOR v IN {_parameters.NodeCollectionName}
                         FILTER v.name == ""{nodeName1}""
@@ -514,19 +512,19 @@ public class DbTasks
                 }}
          ";
 
-         Console.WriteLine($"Query: {query}");
-         var result = await _client.Cursor.PostCursorAsync<dynamic>(new PostCursorBody
-         {
-             Query = query
-         });
+        Console.WriteLine($"Query: {query}");
+        var result = await _client.Cursor.PostCursorAsync<dynamic>(new PostCursorBody
+        {
+            Query = query
+        });
 
-         Task18Model? queryResult = null;
+        Task18Model? queryResult = null;
 
-         foreach (var record in result.Result)
-         {
-             queryResult = JsonConvert.DeserializeObject<Task18Model>(record.ToString());
-         }
-         
-         return queryResult;
-     }
+        foreach (var record in result.Result)
+        {
+            queryResult = JsonConvert.DeserializeObject<Task18Model>(record.ToString());
+        }
+
+        return queryResult;
+    }
 }

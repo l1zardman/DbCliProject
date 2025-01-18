@@ -5,5 +5,8 @@
     "password": "Da7f+uhuti",
     "collection_name": "TaxonomyVertexCollection",
     "edge_collection_name": "TaxonomyEdgeCollection",
-    "graph_name": "WikipediaTaxonomyGraph"
+    "graph_name": "WikipediaTaxonomyGraph",
+    "taxonomy_file": "taxonomy_iw.csv",
+    "popularity_file_raw": "popularity_iw.csv",
+    "popularity_file": "popularity_iw_fixed.csv"
 }

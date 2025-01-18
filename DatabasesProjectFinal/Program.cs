@@ -1,105 +1,72 @@
 ﻿using System;
 using ArangoDBNetStandard;
 using ArangoDBNetStandard.AuthApi;
+using DatabasesProjectFinal;
 using DbcliCoreUtility;
 using Newtonsoft.Json;
 
-// namespace DatabasesProjectFinal;
 
-// class Program {
-//     static void Main(string[] args) {
-//         if (args.Length != 2) {
-//             Console.WriteLine("Usage: dbcli <int_arg> <string_arg>");
-//             return;
-//         }
-//
-//         if (!int.TryParse(args[0], out int intArg)) {
-//             Console.WriteLine("Error: The first argument must be an integer.");
-//             return;
-//         }
-//
-//         string stringArg = args[1];
-//
-//         Console.WriteLine($"Integer argument: {intArg}");
-//         Console.WriteLine($"String argument: {stringArg}");
-//     }
-// }
+var taskType = (TasksEnum)Enum.Parse(typeof(TasksEnum), args[0]);
+var commandManager = new CommandManager();
 
-
-string path_to_config = @"./dbcli_config.json";
-string json = "";
-
-try
+switch (taskType)
 {
-    json = File.ReadAllText(path_to_config);
-    Console.WriteLine(json);
-}
-catch (Exception e)
-{
-    Console.WriteLine(e);
-    throw;
-}
-DbParameters parameters;
-try
-{
-    parameters = JsonConvert.DeserializeObject<DbParameters>(json);
-    Console.WriteLine($"Db uri: {parameters?.DbUri}");
-    Console.WriteLine($"Db name: {parameters?.DbName}");
-    Console.WriteLine($"Db user: {parameters?.Username}");
-    Console.WriteLine($"Db password: {parameters?.Password}");
-}
-catch (Exception e)
-{
-    Console.WriteLine(e);
-    throw;
-}
-
-var transport = DbConnector.GetApiTransport(parameters!);
-var dbClient = new ArangoDBClient(transport);
-
-var dbTasksInstance = new DbTasks(parameters!, dbClient);
-
-// await dbTasksInstance.DbCliTask1("1880s_films");
-//
-// var c1 = await dbTasksInstance.DbCliTask2("1880s_films");
-// Console.WriteLine($"Number of descendants: {c1}");
-//
-// await dbTasksInstance.DbCliTask3("1880s_films");
-//
-// var parents = await dbTasksInstance.DbCliTask4("1880s_films");
-//
-// Console.WriteLine($"Number of parents: {parents.Count}");
-//
-// var grandParents = await dbTasksInstance.DbCliTask6("1880s_films");
-//
-// Console.WriteLine($"Number of grand parents: {grandParents.Count}");
-
-// var lst = await dbTasksInstance.DbCliTask8();
-//
-// Console.WriteLine($"{lst.Count}");
-
-// await dbTasksInstance.DbCliTask11(2);
-
-// await dbTasksInstance.DbCliTask12("1880s_films_42", "1880s_films");
-
-
-// await dbTasksInstance.DbCliTask13("1880s_films", 30941);
-
-// int num15 = await dbTasksInstance.DbCliTask15("Works_by_type_and_year", "1969_paintings");
-// Console.WriteLine($"Number of nodes: {num15}");
-// await dbTasksInstance.DbCliTask16("1880s_films", 8);
-
-// int pop_score = await dbTasksInstance.DbCliTask17("Wikipedia_administration_by_MediaWiki_feature", "1880s_films");
-//
-// Console.WriteLine($"Popularity score: {pop_score}");
-
-var obj = await dbTasksInstance.DbCliTask18("Wikipedia_administration_by_MediaWiki_feature", "1880s_films", 15);
-
-Console.WriteLine($"Pop: {obj.MaxPopularity}");
-
-Console.WriteLine($"Weight: {obj.BestPath.Weight}");
-
-foreach (var vertex in obj.BestPath.Vertices)
-{
-    Console.WriteLine($"Vertex: {vertex}");
+    case TasksEnum.Task0:
+        break;
+    case TasksEnum.Task1:
+        await commandManager.PrepareForTask1(args);
+        break;
+    case TasksEnum.Task2:
+        await commandManager.PrepareForTask2(args);
+        break;
+    case TasksEnum.Task3:
+        await commandManager.PrepareForTask3(args);
+        break;
+    case TasksEnum.Task4:
+        await commandManager.PrepareForTask4(args);
+        break;
+    case TasksEnum.Task5:
+        await commandManager.PrepareForTask5(args);
+        break;
+    case TasksEnum.Task6:
+        await commandManager.PrepareForTask6(args);
+        break;
+    case TasksEnum.Task7:
+        await commandManager.PrepareForTask7(args);
+        break;
+    case TasksEnum.Task8:
+        await commandManager.PrepareForTask8(args);
+        break;
+    case TasksEnum.Task9:
+        await commandManager.PrepareForTask9(args);
+        break;
+    case TasksEnum.Task10:
+        await commandManager.PrepareForTask10(args);
+        break;
+    case TasksEnum.Task11:
+        await commandManager.PrepareForTask11(args);
+        break;
+    case TasksEnum.Task12:
+        await commandManager.PrepareForTask12(args);
+        break;
+    case TasksEnum.Task13:
+        await commandManager.PrepareForTask13(args);
+        break;
+    case TasksEnum.Task14:
+        await commandManager.PrepareForTask14(args);
+        break;
+    case TasksEnum.Task15:
+        await commandManager.PrepareForTask15(args);
+        break;
+    case TasksEnum.Task16:
+        await commandManager.PrepareForTask16(args);
+        break;
+    case TasksEnum.Task17:
+        await commandManager.PrepareForTask17(args);
+        break;
+    case TasksEnum.Task18:
+        await commandManager.PrepareForTask18(args);
+        break;
+    default:
+        throw new ArgumentOutOfRangeException();
 }
