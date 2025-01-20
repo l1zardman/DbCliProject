@@ -1,6 +1,7 @@
+using DbcliModels.TaskModels;
 using Newtonsoft.Json;
 
-namespace DbcliCoreUtility;
+namespace DbcliModels.TaskModels;
 
 public class Task18Model
 {

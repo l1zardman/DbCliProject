@@ -8,7 +8,11 @@
 
     <ItemGroup>
       <PackageReference Include="ArangoDBNetStandard" Version="3.0.0" />
-      <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DbcliModels\DbcliModels.csproj" />
     </ItemGroup>
 
 </Project>

@@ -8,18 +8,24 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ArangoDbLoader\ArangoDbLoader.csproj" />
+      <ProjectReference Include="..\DbcliArangoLoader\DbcliArangoLoader.csproj" />
       <ProjectReference Include="..\DbcliCoreUtility\DbcliCoreUtility.csproj" />
-      <ProjectReference Include="..\DcliCsvFix\DcliCsvFix.csproj" />
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="publish\" />
       <Folder Include="Resources\" />
     </ItemGroup>
 
     <ItemGroup>
       <None Update="dbcli_config.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\popularity_iw.csv">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Resources\taxonomy_iw.csv">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
     </ItemGroup>
 

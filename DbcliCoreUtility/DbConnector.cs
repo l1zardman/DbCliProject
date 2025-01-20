@@ -1,6 +1,6 @@
 using ArangoDBNetStandard.Transport.Http;
 
-namespace DbcliCoreUtility;
+namespace DbcliModels.TaskModels;
 
 public class DbConnector {
     public static HttpApiTransport GetApiTransport(ConfigParameters parameters) {

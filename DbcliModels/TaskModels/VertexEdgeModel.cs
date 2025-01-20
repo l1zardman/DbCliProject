@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace DbcliCoreUtility;
+namespace DbcliModels.TaskModels;
 
 public class VertexEdgeModel
 {

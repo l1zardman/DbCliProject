@@ -1,6 +1,7 @@
 {
     "db_uri": "http://localhost:8529/",
     "db_name": "test_efficiency_csharp1",
+    "system_db" : "_system",
     "username": "root",
     "password": "Da7f+uhuti",
     "collection_name": "TaxonomyVertexCollection",

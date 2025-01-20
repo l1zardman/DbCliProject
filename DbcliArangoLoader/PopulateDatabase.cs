@@ -5,39 +5,34 @@ using ArangoDBNetStandard.GraphApi.Models;
 using ArangoDBNetStandard.Transport.Http;
 using CsvHelper;
 using CsvHelper.Configuration;
+using DbcliModels;
 
-namespace ArangoDbLoader;
+namespace DbcliArangoLoader;
 
 public class PopulateDatabase
 {
-    public Uri ArangoUri => new Uri("http://localhost:8529");
-    public string SystemDb => "_system";
-    public string Username => "root";
-    public string Password => "Da7f+uhuti";
+    private ConfigParameters _config;
 
-    public string DbName { get; private set; }
-    public string GraphName => "WikipediaTaxonomyGraph";
-    public string SourceCollectionName => "TaxonomyVertexCollection";
-    public string TargetCollectionName => "TaxonomyVertexCollection";
-    public string EdgeCollectionName => "TaxonomyEdgeCollection";
+    public Uri ArangoUri { get; private set; }
 
-    public PopulateDatabase(string nameForNewDb)
+    public PopulateDatabase(ConfigParameters config)
     {
-        DbName = nameForNewDb;
+        _config = config;
+        ArangoUri = new Uri(_config.DbUri);
     }
 
     public async Task DropIfExist()
     {
-        using (var transport = HttpApiTransport.UsingBasicAuth(ArangoUri, SystemDb, Username, Password))
+        using (var transport = HttpApiTransport.UsingBasicAuth(ArangoUri, _config.SystemDb, _config.Username, _config.Password))
         {
             using (var db = new ArangoDBClient(transport))
             {
                 var response = await db.Database.GetDatabasesAsync();
                 var lst = response.Result as List<string>;
 
-                if (lst.Contains(DbName))
+                if (lst.Contains(_config.DbName))
                 {
-                    var deleteResponse = await db.Database.DeleteDatabaseAsync(DbName);
+                    var deleteResponse = await db.Database.DeleteDatabaseAsync(_config.DbName);
                 }
             }
         }
@@ -47,24 +42,24 @@ public class PopulateDatabase
     {
         try
         {
-            using (var transport = HttpApiTransport.UsingBasicAuth(ArangoUri, SystemDb, Username, Password))
+            using (var transport = HttpApiTransport.UsingBasicAuth(ArangoUri, _config.SystemDb, _config.Username, _config.Password))
             {
                 using (var db = new ArangoDBClient(transport))
                 {
                     var response = await db.Database.GetDatabasesAsync();
                     var lst = response.Result as List<string>;
 
-                    if (!lst.Contains(DbName))
+                    if (!lst.Contains(_config.DbName))
                     {
                         var body = new PostDatabaseBody()
                         {
-                            Name = DbName,
+                            Name = _config.DbName,
                             Users = new List<DatabaseUser>()
                             {
                                 new DatabaseUser()
                                 {
-                                    Username = Username,
-                                    Passwd = Password,
+                                    Username = _config.Username,
+                                    Passwd = _config.Password,
                                     Active = true
                                 }
                             }
@@ -86,7 +81,7 @@ public class PopulateDatabase
     {
         try
         {
-            using (var transport = HttpApiTransport.UsingBasicAuth(ArangoUri, DbName, Username, Password))
+            using (var transport = HttpApiTransport.UsingBasicAuth(ArangoUri, _config.DbName, _config.Username, _config.Password))
             {
                 using (var db = new ArangoDBClient(transport))
                 {
@@ -94,14 +89,14 @@ public class PopulateDatabase
                     {
                         await db.Graph.PostGraphAsync(new PostGraphBody
                         {
-                            Name = GraphName,
+                            Name = _config.GraphName,
                             EdgeDefinitions = new List<EdgeDefinition>
                             {
                                 new EdgeDefinition
                                 {
-                                    From = new string[] { SourceCollectionName },
-                                    To = new string[] { TargetCollectionName },
-                                    Collection = EdgeCollectionName
+                                    From = new string[] { _config.NodeCollectionName },
+                                    To = new string[] { _config.NodeCollectionName },
+                                    Collection = _config.EdgeCollectionName
                                 }
                             }
                         });
@@ -125,7 +120,7 @@ public class PopulateDatabase
     {
         try
         {
-            using (var transport = HttpApiTransport.UsingBasicAuth(ArangoUri, DbName, Username, Password))
+            using (var transport = HttpApiTransport.UsingBasicAuth(ArangoUri, _config.DbName, _config.Username, _config.Password))
             {
                 using (var db = new ArangoDBClient(transport))
                 {
@@ -135,7 +130,7 @@ public class PopulateDatabase
 
                         Parallel.ForEachAsync(keys, async (s, token) =>
                         {
-                            await db.Document.PostDocumentAsync(SourceCollectionName, new
+                            await db.Document.PostDocumentAsync(_config.NodeCollectionName, new
                             {
                                 _key = taxonomyData[s],
                                 name = s,
@@ -186,7 +181,11 @@ public class PopulateDatabase
             }
 
             Parallel.ForEachAsync(records,
-                async (record, token) => { await _CreateEdge(taxonomyDictionary[record.Key], taxonomyDictionary[record.Value]); }).Wait();
+                async (record, token)
+                    =>
+                {
+                    await _CreateEdge(taxonomyDictionary[record.Key], taxonomyDictionary[record.Value]);
+                }).Wait();
         }
         catch (Exception e)
         {
@@ -197,16 +196,16 @@ public class PopulateDatabase
 
     private async Task _CreateEdge(string srcKey, string dstKey)
     {
-        using (var transport = HttpApiTransport.UsingBasicAuth(ArangoUri, DbName, Username, Password))
+        using (var transport = HttpApiTransport.UsingBasicAuth(ArangoUri, _config.DbName, _config.Username, _config.Password))
         {
             using (var db = new ArangoDBClient(transport))
             {
                 try
                 {
-                    await db.Graph.PostEdgeAsync(GraphName, EdgeCollectionName, new
+                    await db.Graph.PostEdgeAsync(_config.GraphName, _config.EdgeCollectionName, new
                     {
-                        _from = $"{SourceCollectionName}/{srcKey}",
-                        _to = $"{TargetCollectionName}/{dstKey}"
+                        _from = $"{_config.NodeCollectionName}/{srcKey}",
+                        _to = $"{_config.NodeCollectionName}/{dstKey}"
                     });
                 }
                 catch (Exception e)
@@ -216,5 +215,32 @@ public class PopulateDatabase
                 }
             }
         }
+    }
+
+    public static async Task Execute(ConfigParameters config, string taxonomyPath, string popularityPath)
+    {
+        var taxonomy = new TaxonomyLoader();
+        Console.WriteLine("Loading Taxonomy Data...");
+        await taxonomy.LoadTaxonomyData(taxonomyPath);
+
+        var popularity = new PopularityLoader();
+        Console.WriteLine("Loading Popularity Data...");
+        await popularity.LoadPopularityData(popularityPath);
+
+        var pd = new PopulateDatabase(config);
+
+        await pd.DropIfExist();
+
+        await pd.CreateDb();
+
+        await pd.PrepareGraph();
+
+        await pd.PopulateGraphNodes(taxonomy.TaxonomyData, popularity.PopularityData);
+
+        await pd.MakeEdges(taxonomyPath, taxonomy.TaxonomyData);
+
+        await pd.CreateDb();
+        
+        Console.WriteLine("Successfully Created Db!");
     }
 }

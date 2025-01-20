@@ -2,14 +2,12 @@ using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
 
-namespace ArangoDbLoader;
+namespace DbcliArangoLoader;
 
 public class TaxonomyLoader {
     private Dictionary<String, String> _taxonomyData = new Dictionary<String, String>();
 
-    public Dictionary<String, String> TaxonomyData {
-        get { return _taxonomyData; }
-    }
+    public Dictionary<String, String> TaxonomyData => _taxonomyData;
 
     public TaxonomyLoader() { }
 

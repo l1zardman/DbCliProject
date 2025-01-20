@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace DbcliCoreUtility;
+namespace DbcliModels;
 
 public class ConfigParameters
 {
@@ -9,6 +9,9 @@ public class ConfigParameters
 
     [JsonProperty("db_name")]
     public required string DbName { get; set; }
+    
+    [JsonProperty("system_db")]
+    public required string SystemDb { get; set; } = "_system";
 
     [JsonProperty("username")]
     public required string Username { get; set; }
@@ -34,4 +37,5 @@ public class ConfigParameters
     
     [JsonProperty("popularity_file")]
     public required string PopularityFile { get; set; }
+    
 }
