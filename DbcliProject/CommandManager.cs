@@ -1,3 +1,4 @@
+using ArangoDBNetStandard;
 using DbcliArangoLoader;
 using DbcliModels;
 using DbcliModels.TaskModels;
@@ -56,6 +57,13 @@ public class CommandManager
         await PopulateDatabase.Execute(config: _parameters, taxonomyPath, popularityPath);
     }
 
+    private void _prepareConnection()
+    {
+        var transport = DbConnector.GetApiTransport(_parameters);
+        var client = new ArangoDBClient(transport);
+        _dbTasks = new DbTasks(_parameters, client);
+    }
+
     /// <summary>
     /// 
     /// </summary>
@@ -69,6 +77,7 @@ public class CommandManager
             if (args == null || args.Length != 2)
                 throw new ArgumentException("Invalid number of arguments. Expected 2 arguments.");
 
+            _prepareConnection();
             if (_dbTasks is null)
                 throw new NullReferenceException("DbTasks is null, cannot proceed.");
 
@@ -98,7 +107,8 @@ public class CommandManager
         {
             if (args == null || args.Length != 2)
                 throw new ArgumentException("Invalid number of arguments. Expected 2 arguments.");
-
+            
+            _prepareConnection();
             if (_dbTasks is null)
                 throw new NullReferenceException("DbTasks is null, cannot proceed.");
 
@@ -129,6 +139,7 @@ public class CommandManager
             if (args == null || args.Length != 2)
                 throw new ArgumentException("Invalid number of arguments. Expected 2 arguments.");
 
+            _prepareConnection();
             if (_dbTasks is null)
                 throw new NullReferenceException("DbTasks is null, cannot proceed.");
 
@@ -157,12 +168,12 @@ public class CommandManager
         try
         {
             if (args == null || args.Length != 2)
-            {
                 throw new ArgumentException("Invalid number of arguments. Expected 2 arguments.");
-            }
+            
 
             string nodeName = args[1];
 
+            _prepareConnection();
             if (_dbTasks is null)
                 throw new NullReferenceException("DbTasks is null, cannot proceed.");
 
@@ -189,12 +200,11 @@ public class CommandManager
         try
         {
             if (args == null || args.Length != 2)
-            {
                 throw new ArgumentException("Invalid number of arguments. Expected 2 arguments.");
-            }
 
             string nodeName = args[1];
 
+            _prepareConnection();
             if (_dbTasks is null)
                 throw new NullReferenceException("DbTasks is null, cannot proceed.");
 
@@ -221,12 +231,12 @@ public class CommandManager
         try
         {
             if (args == null || args.Length != 2)
-            {
                 throw new ArgumentException("Invalid number of arguments. Expected 2 arguments.");
-            }
+            
 
             string nodeName = args[1];
 
+            _prepareConnection();
             if (_dbTasks is null)
                 throw new NullReferenceException("DbTasks is null, cannot proceed.");
 
@@ -253,10 +263,9 @@ public class CommandManager
         try
         {
             if (args == null || args.Length != 1)
-            {
                 throw new ArgumentException("Invalid number of arguments. Expected 1 argument.");
-            }
 
+            _prepareConnection();
             if (_dbTasks is null)
                 throw new NullReferenceException("DbTasks is null, cannot proceed.");
 
@@ -283,10 +292,9 @@ public class CommandManager
         try
         {
             if (args == null || args.Length != 1)
-            {
                 throw new ArgumentException("Invalid number of arguments. Expected 1 argument.");
-            }
-
+            
+            _prepareConnection();
             if (_dbTasks is null)
                 throw new NullReferenceException("DbTasks is null, cannot proceed.");
 
@@ -313,10 +321,9 @@ public class CommandManager
         try
         {
             if (args == null || args.Length != 1)
-            {
                 throw new ArgumentException("Invalid number of arguments. Expected 1 argument.");
-            }
 
+            _prepareConnection();
             if (_dbTasks is null)
                 throw new NullReferenceException("DbTasks is null, cannot proceed.");
 
@@ -343,17 +350,15 @@ public class CommandManager
         try
         {
             if (args == null || args.Length != 2)
-            {
                 throw new ArgumentException("Invalid number of arguments. Expected 2 arguments.");
-            }
+            
 
+            _prepareConnection();
             if (_dbTasks is null)
                 throw new NullReferenceException("DbTasks is null, cannot proceed.");
 
             if (!int.TryParse(args[1], out var depth))
-            {
                 throw new ArgumentException("Invalid argument at position 2. Expected an integer.");
-            }
 
             await _dbTasks.DbCliTask10(depth);
         }
@@ -381,20 +386,14 @@ public class CommandManager
     {
         try
         {
-            if (args == null || args.Length != 2)
-            {
-                throw new ArgumentException("Invalid number of arguments. Expected 2 arguments.");
-            }
+            if (args == null || args.Length != 1)
+                throw new ArgumentException("Invalid number of arguments. Expected 1 arguments.");
 
+            _prepareConnection();
             if (_dbTasks is null)
                 throw new NullReferenceException("DbTasks is null, cannot proceed.");
 
-            if (!int.TryParse(args[1], out var depth))
-            {
-                throw new ArgumentException("Invalid argument at position 2. Expected an integer.");
-            }
-
-            await _dbTasks.DbCliTask10(depth);
+            await _dbTasks.DbCliTask11();
         }
         catch (NullReferenceException e)
         {
@@ -423,6 +422,7 @@ public class CommandManager
             if (args == null || args.Length != 3)
                 throw new ArgumentException("Invalid number of arguments. Expected 2 arguments.");
 
+            _prepareConnection();
             if (_dbTasks is null)
                 throw new NullReferenceException("DbTasks is null, cannot proceed.");
 
@@ -458,6 +458,7 @@ public class CommandManager
             if (args == null || args.Length != 3)
                 throw new ArgumentException("Invalid number of arguments. Expected 3 arguments.");
 
+            _prepareConnection();
             if (_dbTasks is null)
                 throw new NullReferenceException("DbTasks is null, cannot proceed.");
 
@@ -494,6 +495,7 @@ public class CommandManager
             if (args == null || args.Length != 3)
                 throw new ArgumentException("Invalid number of arguments. Expected 3 arguments.");
 
+            _prepareConnection();
             if (_dbTasks is null)
                 throw new NullReferenceException("DbTasks is null, cannot proceed.");
 
@@ -529,6 +531,7 @@ public class CommandManager
             if (args == null || args.Length != 3)
                 throw new ArgumentException("Invalid number of arguments. Expected 3 arguments.");
 
+            _prepareConnection();
             if (_dbTasks is null)
                 throw new NullReferenceException("DbTasks is null, cannot proceed.");
 
@@ -564,6 +567,7 @@ public class CommandManager
             if (args == null || args.Length != 3)
                 throw new ArgumentException("Invalid number of arguments. Expected 3 arguments.");
 
+            _prepareConnection();
             if (_dbTasks is null)
                 throw new NullReferenceException("DbTasks is null, cannot proceed.");
 
@@ -600,6 +604,7 @@ public class CommandManager
             if (args == null || args.Length != 3)
                 throw new ArgumentException("Invalid number of arguments. Expected 3 arguments.");
 
+            _prepareConnection();
             if (_dbTasks is null)
                 throw new NullReferenceException("DbTasks is null, cannot proceed.");
 
@@ -633,8 +638,9 @@ public class CommandManager
         try
         {
             if (args == null || args.Length != 4)
-                throw new ArgumentException("Invalid number of arguments. Expected 3 arguments.");
+                throw new ArgumentException("Invalid number of arguments. Expected 4 arguments.");
 
+            _prepareConnection();
             if (_dbTasks is null)
                 throw new NullReferenceException("DbTasks is null, cannot proceed.");
 

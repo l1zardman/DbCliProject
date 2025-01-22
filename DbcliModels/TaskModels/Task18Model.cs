@@ -10,4 +10,9 @@ public class Task18Model
     
     [JsonProperty("maxPopularity")]
     public required int MaxPopularity { get; set; }
+
+    public override string ToString()
+    {
+        return $"{BestPath}, Max Popularity : {MaxPopularity}";
+    }
 }

@@ -47,6 +47,7 @@ public class DbTasks
     public async Task<int> DbCliTask2(string nodeName)
     {
         var res = await DbCliTask1(nodeName);
+        Console.WriteLine($"Descendant Count : {res.Count}");
         return res.Count;
     }
 
@@ -138,14 +139,14 @@ public class DbTasks
         foreach (var record in result.Result)
         {
             var vertex = JsonConvert.DeserializeObject<VertexModel>(record.ToString());
-            Console.WriteLine($"Grandchild Node: {vertex.Name}");
+            Console.WriteLine($"Grandparent Node: {vertex.Name}");
             queryResult.Add(vertex);
         }
 
         return queryResult;
     }
 
-    public async Task<List<VertexModel>> DbCliTask7()
+    public async Task<int> DbCliTask7()
     {
         var query = $@"
                 RETURN LENGTH(
@@ -161,13 +162,12 @@ public class DbTasks
             Query = query
         });
 
-        List<VertexModel> queryResult = new();
+        var queryResult = 0;
 
         foreach (var record in result.Result)
         {
-            var vertex = JsonConvert.DeserializeObject<VertexModel>(record.ToString());
-            Console.WriteLine($"Parent Node: {vertex.Name}");
-            queryResult.Add(vertex);
+            queryResult = JsonConvert.DeserializeObject<int>(record.ToString());
+            Console.WriteLine($"Number of distinct Nodes: {queryResult}");
         }
 
         return queryResult;
@@ -207,7 +207,7 @@ public class DbTasks
     public async Task<int> DbCliTask9()
     {
         var queryResult = await DbCliTask8();
-
+        Console.WriteLine($"Root nodes: {queryResult.Count}");
         return queryResult.Count;
     }
 
@@ -245,7 +245,7 @@ public class DbTasks
         return queryResult;
     }
 
-    public async Task<List<VertexCountModel>> DbCliTask11(int depth)
+    public async Task<List<VertexCountModel>> DbCliTask11()
     {
         var query = $@"
                 FOR node IN {_parameters.NodeCollectionName}
@@ -255,7 +255,7 @@ public class DbTasks
                     )
                     FILTER childrenCount > 0
                     SORT childrenCount ASC
-                    LIMIT {depth}
+                    LIMIT 1
 
                     RETURN {{
                         node: node,
@@ -357,7 +357,7 @@ public class DbTasks
 
         foreach (var e in queryResult!.Edges)
         {
-            Console.WriteLine($"Edges: {e.ToString()}");
+            Console.WriteLine($"Edges: {e}");
         }
 
         return queryResult;
@@ -366,6 +366,7 @@ public class DbTasks
     public async Task<int> DbCliTask15(string nodeName1, string nodeName2)
     {
         var res = await DbCliTask14(nodeName1, nodeName2);
+        Console.WriteLine($"Vertices Count : {res.Vertices.Count}");
         return res.Vertices.Count;
     }
 
@@ -457,6 +458,7 @@ public class DbTasks
         foreach (var record in result.Result)
         {
             queryResult = JsonConvert.DeserializeObject<int>(record.ToString());
+            Console.WriteLine($"{nodeName1} -> {nodeName2}, Score : {queryResult}");
         }
 
         return queryResult;
@@ -523,6 +525,7 @@ public class DbTasks
         foreach (var record in result.Result)
         {
             queryResult = JsonConvert.DeserializeObject<Task18Model>(record.ToString());
+            Console.WriteLine(queryResult);
         }
 
         return queryResult;

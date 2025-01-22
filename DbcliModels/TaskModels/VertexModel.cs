@@ -18,6 +18,6 @@ public class VertexModel
 
     public override string ToString()
     {
-        return $"Vertex_Name: {Name}, Vertex_Key: {Key}";
+        return $"Vertex_Name: {Name}";
     }
 }

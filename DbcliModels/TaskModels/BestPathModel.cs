@@ -13,6 +13,11 @@ public class BestPathModel
     
     [JsonProperty("weight")]
     public required int Weight { get; set; }
-    
-   
+
+    public override string ToString()
+    {
+        var vertices = "[" + string.Join(", ", Vertices) + "]";
+        // var edges = "[" + string.Join(", ", Edges) + "]";
+        return $"Path:\n\nVertices : {vertices}\nWeight : {Weight}";
+    }
 }
