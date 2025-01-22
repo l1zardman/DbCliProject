@@ -41,7 +41,19 @@ public class CommandManager
 
     public async Task LoadToArangoDb(string[] args)
     {
-        throw new NotImplementedException();
+        if (args == null || args.Length != 2)
+            throw new ArgumentException("Invalid number of arguments. Expected 2 arguments.");
+        
+        var root = Directory.GetCurrentDirectory();
+        string popularityRawPath = Path.Combine(root, $"Resources/{_parameters.PopularityFileRaw}");
+        string taxonomyPath = Path.Combine(root, $"Resources/{_parameters.TaxonomyFile}");
+        string popularityPath = Path.Combine(root, $"Resources/{_parameters.PopularityFile}");
+
+        Console.WriteLine(root);
+        Console.WriteLine($"Popularity: {popularityPath}");
+        Console.WriteLine($"Taxonomy: {taxonomyPath}");
+
+        await PopulateDatabase.Execute(config: _parameters, taxonomyPath, popularityPath);
     }
 
     /// <summary>
