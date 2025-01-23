@@ -1,0 +1,40 @@
+name:
+  adv-db-systems
+
+volumes:
+  arangodb-data:
+  arangodb-apps:
+
+services:
+  arangodb:
+    image: arangodb:latest
+    container_name: arangodb
+    environment:
+      - ARANGO_NO_AUTH=1
+    ports:
+      - "8529:8529"
+    volumes:
+      - arangodb-data:/var/lib/arangodb3
+      - arangodb-apps:/var/lib/arangodb3-apps
+    deploy:
+      resources:
+        limits:
+          memory: 16g
+          cpus: "8.0"
+  
+  app:
+    image: adv-db-systems.app
+    container_name: adv-db-systems.app
+    pull_policy:
+      build
+    build:
+      context: .
+      dockerfile: DbcliProject/Dockerfile
+    volumes:
+      - ./DbcliProject/Resources:/app/Resources
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 16g
+          cpus: "8.0"

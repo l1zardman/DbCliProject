@@ -46,7 +46,7 @@ public class PopularityLoader
         }
         catch (Exception e)
         {
-            Console.WriteLine($"Error reading popularity CSV file: {e.Message}");
+            Console.WriteLine($"Error reading popularity CSV file: {e}");
         }
     }
 }

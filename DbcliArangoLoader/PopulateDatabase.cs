@@ -72,7 +72,7 @@ public class PopulateDatabase
         }
         catch (Exception e)
         {
-            Console.WriteLine("Error creating database (Connection error): " + e.Message);
+            Console.WriteLine("Error creating database (Connection error): " + e);
             throw;
         }
     }
@@ -103,7 +103,7 @@ public class PopulateDatabase
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("Error preparing graph: " + e.Message);
+                        Console.WriteLine("Error preparing graph: " + e);
                         throw;
                     }
                 }
@@ -111,7 +111,7 @@ public class PopulateDatabase
         }
         catch (Exception e)
         {
-            Console.WriteLine("Error connecting to arangodb during preparing graph: " + e.Message);
+            Console.WriteLine("Error connecting to arangodb during preparing graph: " + e);
             throw;
         }
     }
@@ -140,7 +140,7 @@ public class PopulateDatabase
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("Error populating graph nodes: " + e.Message);
+                        Console.WriteLine("Error populating graph nodes: " + e);
                         throw;
                     }
                 }
@@ -148,7 +148,7 @@ public class PopulateDatabase
         }
         catch (Exception e)
         {
-            Console.WriteLine($"Error connecting to arangodb: {e.Message}");
+            Console.WriteLine($"Error connecting to arangodb: {e}");
         }
     }
 
@@ -189,7 +189,7 @@ public class PopulateDatabase
         }
         catch (Exception e)
         {
-            Console.WriteLine($"Error reading taxonomy CSV file during creating edges: {e.Message}");
+            Console.WriteLine($"Error reading taxonomy CSV file during creating edges: {e}");
             throw;
         }
     }
@@ -210,7 +210,7 @@ public class PopulateDatabase
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"Error creating edge in _CreateEdge: {e.Message}");
+                    Console.WriteLine($"Error creating edge in _CreateEdge: {e}");
                     throw;
                 }
             }
