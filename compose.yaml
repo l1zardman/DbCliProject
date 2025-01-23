@@ -31,7 +31,8 @@ services:
       context: .
       dockerfile: DbcliProject/Dockerfile
     volumes:
-      - ./DbcliProject/Resources:/app/Resources
+      - ./resources:/app/Resources
+      - ./configs:/app/configs
     restart: unless-stopped
     deploy:
       resources:
