@@ -41,7 +41,7 @@ public class TaxonomyLoader {
             }
         }
         catch (Exception e) {
-            Console.WriteLine($"Error reading CSV file: {e.Message}");
+            Console.WriteLine($"Error reading CSV file: {e}");
         }
     }
 }

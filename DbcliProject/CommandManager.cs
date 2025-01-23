@@ -36,7 +36,7 @@ public class CommandManager
         }
         catch (Exception e)
         {
-            Console.WriteLine($"An error occurred: {e.Message}");
+            Console.WriteLine($"An error occurred: {e}");
         }
     }
 
@@ -87,11 +87,11 @@ public class CommandManager
         }
         catch (NullReferenceException e)
         {
-            Console.WriteLine($"Null reference exception in trying to run Task 1, does correct DB exist? Error message: {e.Message}");
+            Console.WriteLine($"Null reference exception in trying to run Task 1, does correct DB exist? Error message: {e}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"An error occurred: {ex.Message}");
+            Console.WriteLine($"An error occurred: {ex}");
         }
     }
 
@@ -118,11 +118,11 @@ public class CommandManager
         }
         catch (NullReferenceException e)
         {
-            Console.WriteLine($"Null reference exception in trying to run Task 2, does correct DB exist? Error message: {e.Message}");
+            Console.WriteLine($"Null reference exception in trying to run Task 2, does correct DB exist? Error message: {e}");
         }
         catch (Exception e)
         {
-            Console.WriteLine($"An error occurred: {e.Message}");
+            Console.WriteLine($"An error occurred: {e}");
         }
     }
 
@@ -149,11 +149,11 @@ public class CommandManager
         }
         catch (NullReferenceException e)
         {
-            Console.WriteLine($"Null reference exception in trying to run Task 3, does correct DB exist? Error message: {e.Message}");
+            Console.WriteLine($"Null reference exception in trying to run Task 3, does correct DB exist? Error message: {e}");
         }
         catch (Exception e)
         {
-            Console.WriteLine($"An error occurred: {e.Message}");
+            Console.WriteLine($"An error occurred: {e}");
         }
     }
 
@@ -181,11 +181,11 @@ public class CommandManager
         }
         catch (NullReferenceException e)
         {
-            Console.WriteLine($"Null reference exception in trying to run Task 4, does correct DB exist? Error message: {e.Message}");
+            Console.WriteLine($"Null reference exception in trying to run Task 4, does correct DB exist? Error message: {e}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"An error occurred: {ex.Message}");
+            Console.WriteLine($"An error occurred: {ex}");
         }
     }
 
@@ -212,11 +212,11 @@ public class CommandManager
         }
         catch (NullReferenceException e)
         {
-            Console.WriteLine($"Null reference exception in trying to run Task 5, does correct DB exist? Error message: {e.Message}");
+            Console.WriteLine($"Null reference exception in trying to run Task 5, does correct DB exist? Error message: {e}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"An error occurred: {ex.Message}");
+            Console.WriteLine($"An error occurred: {ex}");
         }
     }
 
@@ -244,11 +244,11 @@ public class CommandManager
         }
         catch (NullReferenceException e)
         {
-            Console.WriteLine($"Null reference exception in trying to run Task 6, does correct DB exist? Error message: {e.Message}");
+            Console.WriteLine($"Null reference exception in trying to run Task 6, does correct DB exist? Error message: {e}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"An error occurred: {ex.Message}");
+            Console.WriteLine($"An error occurred: {ex}");
         }
     }
 
@@ -273,11 +273,11 @@ public class CommandManager
         }
         catch (NullReferenceException e)
         {
-            Console.WriteLine($"Null reference exception in trying to run Task 1, does correct DB exist? Error message: {{e.Message}}");
+            Console.WriteLine($"Null reference exception in trying to run Task 1, does correct DB exist? Error message: {{e}}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"An error occurred: {ex.Message}");
+            Console.WriteLine($"An error occurred: {ex}");
         }
     }
 
@@ -302,11 +302,11 @@ public class CommandManager
         }
         catch (NullReferenceException e)
         {
-            Console.WriteLine($"Null reference exception in trying to run Task 8, does correct DB exist? Error message: {e.Message}");
+            Console.WriteLine($"Null reference exception in trying to run Task 8, does correct DB exist? Error message: {e}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"An error occurred: {ex.Message}");
+            Console.WriteLine($"An error occurred: {ex}");
         }
     }
 
@@ -331,11 +331,11 @@ public class CommandManager
         }
         catch (NullReferenceException e)
         {
-            Console.WriteLine($"Null reference exception in trying to run Task 9, does correct DB exist? Error message: {e.Message}");
+            Console.WriteLine($"Null reference exception in trying to run Task 9, does correct DB exist? Error message: {e}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"An error occurred: {ex.Message}");
+            Console.WriteLine($"An error occurred: {ex}");
         }
     }
 
@@ -364,15 +364,15 @@ public class CommandManager
         }
         catch (NullReferenceException e)
         {
-            Console.WriteLine($"Null reference exception in trying to run Task 10, does correct DB exist? Error message: {e.Message}");
+            Console.WriteLine($"Null reference exception in trying to run Task 10, does correct DB exist? Error message: {e}");
         }
         catch (ArgumentException e)
         {
-            Console.WriteLine($"An argument error occurred: {e.Message}");
+            Console.WriteLine($"An argument error occurred: {e}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"An error occurred: {ex.Message}");
+            Console.WriteLine($"An error occurred: {ex}");
         }
     }
 
@@ -397,15 +397,15 @@ public class CommandManager
         }
         catch (NullReferenceException e)
         {
-            Console.WriteLine($"Null reference exception in trying to run Task 11, does correct DB exist? Error message: {e.Message}");
+            Console.WriteLine($"Null reference exception in trying to run Task 11, does correct DB exist? Error message: {e}");
         }
         catch (ArgumentException e)
         {
-            Console.WriteLine($"An argument error occurred: {e.Message}");
+            Console.WriteLine($"An argument error occurred: {e}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"An error occurred: {ex.Message}");
+            Console.WriteLine($"An error occurred: {ex}");
         }
     }
 
@@ -433,15 +433,15 @@ public class CommandManager
         }
         catch (NullReferenceException e)
         {
-            Console.WriteLine($"Null reference exception in trying to run Task 12, does correct DB exist? Error message: {e.Message}");
+            Console.WriteLine($"Null reference exception in trying to run Task 12, does correct DB exist? Error message: {e}");
         }
         catch (ArgumentException e)
         {
-            Console.WriteLine($"An argument error occurred: {e.Message}");
+            Console.WriteLine($"An argument error occurred: {e}");
         }
         catch (Exception e)
         {
-            Console.WriteLine($"An error occurred: {e.Message}");
+            Console.WriteLine($"An error occurred: {e}");
         }
     }
 
@@ -470,15 +470,15 @@ public class CommandManager
         }
         catch (NullReferenceException e)
         {
-            Console.WriteLine($"Null reference exception in trying to run Task 13, does correct DB exist? Error message: {e.Message}");
+            Console.WriteLine($"Null reference exception in trying to run Task 13, does correct DB exist? Error message: {e}");
         }
         catch (ArgumentException e)
         {
-            Console.WriteLine($"An argument error occurred: {e.Message}");
+            Console.WriteLine($"An argument error occurred: {e}");
         }
         catch (Exception e)
         {
-            Console.WriteLine($"An error occurred: {e.Message}");
+            Console.WriteLine($"An error occurred: {e}");
         }
     }
 
@@ -506,15 +506,15 @@ public class CommandManager
         }
         catch (NullReferenceException e)
         {
-            Console.WriteLine($"Null ref exception in trying to run Task 14, does db exist? Err message: {e.Message}");
+            Console.WriteLine($"Null ref exception in trying to run Task 14, does db exist? Err message: {e}");
         }
         catch (ArgumentException e)
         {
-            Console.WriteLine($"An argument error occurred: {e.Message}");
+            Console.WriteLine($"An argument error occurred: {e}");
         }
         catch (Exception e)
         {
-            Console.WriteLine($"An error occurred: {e.Message}");
+            Console.WriteLine($"An error occurred: {e}");
         }
     }
 
@@ -542,15 +542,15 @@ public class CommandManager
         }
         catch (NullReferenceException e)
         {
-            Console.WriteLine($"Null ref exception in trying to run Task 15, does db exist? Err message: {e.Message}");
+            Console.WriteLine($"Null ref exception in trying to run Task 15, does db exist? Err message: {e}");
         }
         catch (ArgumentException e)
         {
-            Console.WriteLine($"An argument error occurred: {e.Message}");
+            Console.WriteLine($"An argument error occurred: {e}");
         }
         catch (Exception e)
         {
-            Console.WriteLine($"An error occurred: {e.Message}");
+            Console.WriteLine($"An error occurred: {e}");
         }
     }
 
@@ -579,15 +579,15 @@ public class CommandManager
         }
         catch (NullReferenceException e)
         {
-            Console.WriteLine($"Null reference exception in trying to run Task 16, does correct DB exist? Error message: {e.Message}");
+            Console.WriteLine($"Null reference exception in trying to run Task 16, does correct DB exist? Error message: {e}");
         }
         catch (ArgumentException e)
         {
-            Console.WriteLine($"An argument error occurred: {e.Message}");
+            Console.WriteLine($"An argument error occurred: {e}");
         }
         catch (Exception e)
         {
-            Console.WriteLine($"An error occurred: {e.Message}");
+            Console.WriteLine($"An error occurred: {e}");
         }
     }
 
@@ -615,15 +615,15 @@ public class CommandManager
         }
         catch (NullReferenceException e)
         {
-            Console.WriteLine($"Null ref exception in trying to run Task 17, does db exist? Err message: {e.Message}");
+            Console.WriteLine($"Null ref exception in trying to run Task 17, does db exist? Err message: {e}");
         }
         catch (ArgumentException e)
         {
-            Console.WriteLine($"An argument error occurred: {e.Message}");
+            Console.WriteLine($"An argument error occurred: {e}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"An error occurred: {ex.Message}");
+            Console.WriteLine($"An error occurred: {ex}");
         }
     }
 
@@ -653,15 +653,15 @@ public class CommandManager
         }
         catch (NullReferenceException e)
         {
-            Console.WriteLine($"Null reference exception in trying to run Task 18, does correct DB exist? Error message: {e.Message}");
+            Console.WriteLine($"Null reference exception in trying to run Task 18, does correct DB exist? Error message: {e}");
         }
         catch (ArgumentException e)
         {
-            Console.WriteLine($"An argument error occurred: {e.Message}");
+            Console.WriteLine($"An argument error occurred: {e}");
         }
         catch (Exception e)
         {
-            Console.WriteLine($"An error occurred: {e.Message}");
+            Console.WriteLine($"An error occurred: {e}");
         }
     }
 }

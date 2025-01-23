@@ -11,28 +11,18 @@ public class CsvFixer
     {
         try
         {
-            await using var readFile
-                = new FileStream(readFilePath, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, useAsync: true);
+            await using var readFile = new FileStream(readFilePath, FileMode.Open, FileAccess.Read, FileShare.Read, 4096, useAsync: true);
             using var reader = new StreamReader(readFile, Encoding.UTF8);
 
-            await using var writeFile =
-                new FileStream(writeFilePath, FileMode.Create, FileAccess.Write, FileShare.None, 4096, useAsync: true);
+            await using var writeFile = new FileStream(writeFilePath, FileMode.Create, FileAccess.Write, FileShare.None, 4096, useAsync: true);
             using var writer = new StreamWriter(writeFile, Encoding.UTF8);
 
             string line;
             while ((line = await reader.ReadLineAsync()) != null)
             {
-                // Process the line
                 string newLine = line.Replace("\"", "");
                 newLine = "\"" + newLine.Replace(",", "\",");
                 string outputString = newLine + "\n";
-
-                // Debugging output (optional)
-                // Console.WriteLine(outputString);
-
-                // Write the modified line to the output file
-                // csvWriter.WriteRecord(newLine);
-                // await csvWriter.NextRecordAsync();
 
                 await writer.WriteAsync(outputString);
             }
@@ -41,7 +31,7 @@ public class CsvFixer
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"An error occurred: {ex.Message}");
+            Console.WriteLine($"An error occurred: {ex}");
         }
     }
 }
