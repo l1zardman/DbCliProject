@@ -16,7 +16,6 @@
 
     <ItemGroup>
       <Folder Include="publish\" />
-      <Folder Include="Resources\" />
     </ItemGroup>
 
     <ItemGroup>

@@ -11,7 +11,7 @@ try
 {
     var root = Directory.GetCurrentDirectory();
 
-    var json = File.ReadAllText("./dbcli_config.json");
+    var json = File.ReadAllText(Path.Combine("configs", "dbcli_config.json"));
     ConfigParameters parameters = JsonConvert.DeserializeObject<ConfigParameters>(json) ??
                                   throw new ApplicationException("Without JSON cannot procceed");
     
