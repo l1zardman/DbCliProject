@@ -22,6 +22,24 @@ services:
           memory: 16g
           cpus: "8.0"
   
+  importer:
+    image: adv-db-systems.app
+    container_name: adv-db-systems.importer
+    pull_policy:
+      build
+    build:
+      context: .
+      dockerfile: DbcliProject/Dockerfile
+    volumes:
+      - ./resources:/app/Resources
+      - ./configs:/app/configs
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 16g
+          cpus: "8.0"
+          
   app:
     image: adv-db-systems.app
     container_name: adv-db-systems.app

@@ -70,15 +70,15 @@ executeTask() {
 
 importer="adv-db-systems.importer"
 app="adv-db-systems.app"
-db="adv-db-systems.memgraph"
+db="arangodb"
 
-#preprocessingCommand=""
-importCommand='./dbimporter /data'
+preprocessingCommand='./dbcli 0 fix'
+importCommand='./dbcli 0 load'
 
 task10Command='./dbcli 10 10'
 task16Command='./dbcli 16 "Tourism_in_Uttarakhand" 1'
 task17Command='./dbcli 17 "19th-century_works" "1887_directorial_debut_films"'
-task18Command='./dbcli 18 "19th-century_works" "1887_directorial_debut_films" 15 50'
+task18Command='./dbcli 18 "19th-century_works" "1887_directorial_debut_films" 15'
 
 # -----------------------------------------------------------------------------
 # Uncomment commands for tasks you want to run. Dont change anything else :)
@@ -86,7 +86,7 @@ task18Command='./dbcli 18 "19th-century_works" "1887_directorial_debut_films" 15
 
 echo "Starting benchmarking..."
 
-#executeTask "preprocessing" "$importer" "$preprocessingCommand" 1
+executeTask "preprocessing" "$importer" "$preprocessingCommand" 1
 executeTask "import" "$importer" "$importCommand" 1
 
 iterationsNumber=5
