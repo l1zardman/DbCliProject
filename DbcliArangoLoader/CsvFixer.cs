@@ -22,7 +22,6 @@ public class CsvFixer
             string line;
             while ((line = await reader.ReadLineAsync()) != null)
             {
-                // Process the line
                 string newLine = line.Replace("\"", "");
                 newLine = "\"" + newLine.Replace(",", "\",");
                 string outputString = newLine + "\n";
