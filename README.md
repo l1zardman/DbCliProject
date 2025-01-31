@@ -21,7 +21,7 @@ Finalna wersja programu nie ma dodatkowych zależności poza C#/.NET'em oraz Ara
 
 ## 2.Architektura
 
-![alt text](ztb.drawio.png)
+![alt text](docs/ztb.drawio.png)
 
 ## 3. Wymagania i zależności (moduły oprogramowania, bazy danych itp.)
 
@@ -46,7 +46,7 @@ Biblioteka działa pod licencją Apache 2.0.
 
 Drzewko programu wygląda następująco:
 
-![alt text](image-1.png)
+![alt text](docs/image-1.png)
 
 ### 3.4.1 DbcliArangoLoader
 
@@ -145,7 +145,7 @@ Największym problemem projektu jest populacja bazy danych, podejrzewamy, że sk
 Podczas developowania oraz testowania aplikacji korzystaliśmy z systemu operacyjnego Ubuntu 20.04.1 (LTS), który obydwoje mamy zainstalowanego na osobistych komputerach.
 Arango DB - Community Edition w wersji 3.12.3 na systemy linux (konkretnie na Ubuntu 24.04) było zainstalowane lokalnie na systemie bez kontenerów.
 
-![](image-2.png)
+![](docs/image-2.png)
 
 Środowisko programistyczne/technologia programistyczna której używaliśmy to .NET 8.0 oraz C# w wersji 12.
 
@@ -221,7 +221,7 @@ W ten sposób **dotnet** pobierze wszystkie potrzebne paczki, oraz zbuduje nasz 
 Nasz projek składa się z folderu solution, który trzyma nasze repozytorium gitowe oraz wszystkie projekty które składają się na naszą aplikację.
 Taka struktura jest standardowa dla projektów .NET.
 
-![alt text](image-1.png)
+![alt text](docs/image-1.png)
 
 ### DbcliArangoLoader
 
