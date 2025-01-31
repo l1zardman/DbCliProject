@@ -88,18 +88,19 @@ public class PopulateDatabase
                     try
                     {
                         await db.Graph.PostGraphAsync(new PostGraphBody
-                        {
-                            Name = _config.GraphName,
-                            EdgeDefinitions = new List<EdgeDefinition>
                             {
-                                new EdgeDefinition
+                                Name = _config.GraphName,
+                                EdgeDefinitions = new List<EdgeDefinition>
                                 {
-                                    From = new string[] { _config.NodeCollectionName },
-                                    To = new string[] { _config.NodeCollectionName },
-                                    Collection = _config.EdgeCollectionName
+                                    new EdgeDefinition
+                                    {
+                                        From = new string[] { _config.NodeCollectionName },
+                                        To = new string[] { _config.NodeCollectionName },
+                                        Collection = _config.EdgeCollectionName
+                                    }
                                 }
                             }
-                        });
+                        );
                     }
                     catch (Exception e)
                     {
@@ -120,35 +121,27 @@ public class PopulateDatabase
     {
         try
         {
-            using (var transport = HttpApiTransport.UsingBasicAuth(ArangoUri, _config.DbName, _config.Username, _config.Password))
-            {
-                using (var db = new ArangoDBClient(transport))
-                {
-                    try
-                    {
-                        var keys = taxonomyData.Keys.ToList();
+            using var transport = HttpApiTransport.UsingBasicAuth(ArangoUri, _config.DbName, _config.Username, _config.Password);
+            using var db = new ArangoDBClient(transport);
 
-                        Parallel.ForEachAsync(keys, async (s, token) =>
+            var keys = taxonomyData.Keys.ToList();
+
+            await Parallel.ForEachAsync(keys, async (s, token) =>
+                {
+                    await db.Document.PostDocumentAsync(_config.NodeCollectionName, new
                         {
-                            await db.Document.PostDocumentAsync(_config.NodeCollectionName, new
-                            {
-                                _key = taxonomyData[s],
-                                name = s,
-                                popularity_score = popularityData.ContainsKey(s) ? popularityData[s] : null
-                            });
-                        }).Wait();
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("Error populating graph nodes: " + e);
-                        throw;
-                    }
+                            _key = taxonomyData[s],
+                            name = s,
+                            popularity_score = popularityData.GetValueOrDefault(s)
+                        }, token: token
+                    );
                 }
-            }
+            );
         }
         catch (Exception e)
         {
-            Console.WriteLine($"Error connecting to arangodb: {e}");
+            Console.WriteLine("Error populating graph nodes: " + e);
+            throw;
         }
     }
 
@@ -180,12 +173,9 @@ public class PopulateDatabase
                 }
             }
 
-            Parallel.ForEachAsync(records,
-                async (record, token)
-                    =>
-                {
-                    await _CreateEdge(taxonomyDictionary[record.Key], taxonomyDictionary[record.Value]);
-                }).Wait();
+            using var transport = HttpApiTransport.UsingBasicAuth(ArangoUri, _config.DbName, _config.Username, _config.Password);
+            using var db = new ArangoDBClient(transport);
+            await Parallel.ForEachAsync(records, async (record, token) => await _CreateEdge(db, taxonomyDictionary[record.Key], taxonomyDictionary[record.Value]));
         }
         catch (Exception e)
         {
@@ -194,26 +184,21 @@ public class PopulateDatabase
         }
     }
 
-    private async Task _CreateEdge(string srcKey, string dstKey)
+    private async Task _CreateEdge(ArangoDBClient db, string srcKey, string dstKey)
     {
-        using (var transport = HttpApiTransport.UsingBasicAuth(ArangoUri, _config.DbName, _config.Username, _config.Password))
+        try
         {
-            using (var db = new ArangoDBClient(transport))
-            {
-                try
+            await db.Graph.PostEdgeAsync(_config.GraphName, _config.EdgeCollectionName, new
                 {
-                    await db.Graph.PostEdgeAsync(_config.GraphName, _config.EdgeCollectionName, new
-                    {
-                        _from = $"{_config.NodeCollectionName}/{srcKey}",
-                        _to = $"{_config.NodeCollectionName}/{dstKey}"
-                    });
+                    _from = $"{_config.NodeCollectionName}/{srcKey}",
+                    _to = $"{_config.NodeCollectionName}/{dstKey}"
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine($"Error creating edge in _CreateEdge: {e}");
-                    throw;
-                }
-            }
+            );
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error creating edge in _CreateEdge: {e}");
+            throw;
         }
     }
 
@@ -239,8 +224,6 @@ public class PopulateDatabase
 
         await pd.MakeEdges(taxonomyPath, taxonomy.TaxonomyData);
 
-        await pd.CreateDb();
-        
         Console.WriteLine("Successfully Created Db!");
     }
 }

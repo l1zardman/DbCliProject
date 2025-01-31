@@ -4,3 +4,4 @@
 **/publish/
 **/dbcli
 /resources/
+*.DotSettings.user

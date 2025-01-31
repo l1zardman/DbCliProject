@@ -1,3 +1,4 @@
+using System.IO.Compression;
 using ArangoDBNetStandard;
 using DbcliArangoLoader;
 using DbcliModels;
@@ -16,8 +17,32 @@ public class CommandManager
         _parameters = parameters;
     }
 
+    public static async Task UnpackGzippedDataAsync()
+    {
+        await Console.Out.WriteLineAsync("Unpacking data");
+
+        var compressedDir = "Resources/compressed";
+        var compressedFiles = Directory.GetFiles(compressedDir, "*.gz");
+
+        foreach (var compressedFile in compressedFiles)
+        {
+            var fileName = Path.GetFileNameWithoutExtension(compressedFile);
+            var uncompressedDir = $"Resources/{fileName}";
+
+            await using var compressedStream = File.OpenRead(compressedFile);
+            await using var decompressedStream = new GZipStream(compressedStream, CompressionMode.Decompress);
+            await using var fileStream = File.Create(uncompressedDir);
+
+            await decompressedStream.CopyToAsync(fileStream);
+        }
+        
+        await Console.Out.WriteLineAsync("Unpacking done.");
+    }
+    
     public async Task FixCsv(string[] args)
     {
+        await UnpackGzippedDataAsync();
+        
         try
         {
             if (args == null || args.Length != 2)
