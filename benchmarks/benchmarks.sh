@@ -76,9 +76,9 @@ preprocessingCommand='./dbcli 0 fix'
 importCommand='./dbcli 0 load'
 
 task10Command='./dbcli 10 10'
-task16Command='./dbcli 16 "Tourism_in_Uttarakhand" 1'
-task17Command='./dbcli 17 "19th-century_works" "1887_directorial_debut_films"'
-task18Command='./dbcli 18 "19th-century_works" "1887_directorial_debut_films" 15'
+task16Command='./dbcli 16 "Tourism_in_Uttarakhand" 5'
+task17Command='./dbcli 17 "Wikipedia_administration_by_MediaWiki_feature" "1880s_films"'
+task18Command='./dbcli 18 "Wikipedia_administration_by_MediaWiki_feature" "1880s_films" 10'
 
 # -----------------------------------------------------------------------------
 # Uncomment commands for tasks you want to run. Dont change anything else :) 

@@ -1,0 +1,841 @@
+Starting benchmarking...
+Executing task 'preprocessing' 1 times for benchmarking...
+Iteration 1 for task 'preprocessing'...
+
+----------------------------------------------------------------------------------------
+Unpacking data
+Unpacking done.
+/app
+Popularity: /app/Resources/popularity_iw_fixed.csv
+Taxonomy: /app/Resources/taxonomy_iw.csv
+[1]+  Done                    captureStats "$task" "$container"
+Iteration: 1: 5716 ms
+
+----------------------------------------------------------------------------------------
+Finished executing task 'preprocessing' 1 times.
+########################################################################################
+
+Executing task 'import' 1 times for benchmarking...
+Iteration 1 for task 'import'...
+
+----------------------------------------------------------------------------------------
+/app
+Popularity: /app/Resources/popularity_iw_fixed.csv
+Taxonomy: /app/Resources/taxonomy_iw.csv
+Loading Taxonomy Data...
+Loading Popularity Data...
+Successfully Created Db!
+[1]+  Done                    captureStats "$task" "$container"
+Iteration: 1: 706410 ms
+
+----------------------------------------------------------------------------------------
+Finished executing task 'import' 1 times.
+########################################################################################
+
+Executing task 'largestNumberOfChildren' 5 times for benchmarking...
+Iteration 1 for task 'largestNumberOfChildren'...
+
+----------------------------------------------------------------------------------------
+Query:
+                FOR node IN TaxonomyVertexCollection
+                    LET childrenCount = COUNT(
+                        FOR child IN 1..1 OUTBOUND node TaxonomyEdgeCollection
+                            RETURN child
+                )
+                SORT childrenCount DESC
+                LIMIT 10
+                RETURN {
+                    node: node,
+                    count: childrenCount
+                }
+
+Node: Albums_by_artist, Count: 23435
+Node: Suspected_Wikipedia_sockpuppets, Count: 23036
+Node: Wikipedia_sockpuppets, Count: 21442
+Node: Stub_categories, Count: 18324
+Node: Songs_by_artist, Count: 9148
+Node: Songs_by_songwriter, Count: 8563
+Node: Films_by_director, Count: 8544
+Node: Taxa_by_author, Count: 4549
+Node: Minor_league_baseball_players_by_team, Count: 4359
+Node: Musicians_by_band, Count: 3726
+[1]+  Done                    captureStats "$task" "$container"
+Iteration: 1: 61948 ms
+
+----------------------------------------------------------------------------------------
+Iteration 2 for task 'largestNumberOfChildren'...
+
+----------------------------------------------------------------------------------------
+Query: 
+                FOR node IN TaxonomyVertexCollection
+                    LET childrenCount = COUNT(
+                        FOR child IN 1..1 OUTBOUND node TaxonomyEdgeCollection
+                            RETURN child
+                )
+                SORT childrenCount DESC
+                LIMIT 10
+                RETURN {
+                    node: node,
+                    count: childrenCount
+                }
+
+Node: Albums_by_artist, Count: 23435
+Node: Suspected_Wikipedia_sockpuppets, Count: 23036
+Node: Wikipedia_sockpuppets, Count: 21442
+Node: Stub_categories, Count: 18324
+Node: Songs_by_artist, Count: 9148
+Node: Songs_by_songwriter, Count: 8563
+Node: Films_by_director, Count: 8544
+Node: Taxa_by_author, Count: 4549
+Node: Minor_league_baseball_players_by_team, Count: 4359
+Node: Musicians_by_band, Count: 3726
+[1]+  Done                    captureStats "$task" "$container"
+Iteration: 2: 7445 ms
+
+----------------------------------------------------------------------------------------
+Iteration 3 for task 'largestNumberOfChildren'...
+
+----------------------------------------------------------------------------------------
+Query:
+                FOR node IN TaxonomyVertexCollection
+                    LET childrenCount = COUNT(
+                        FOR child IN 1..1 OUTBOUND node TaxonomyEdgeCollection
+                            RETURN child
+                )
+                SORT childrenCount DESC
+                LIMIT 10
+                RETURN {
+                    node: node,
+                    count: childrenCount
+                }
+
+Node: Albums_by_artist, Count: 23435
+Node: Suspected_Wikipedia_sockpuppets, Count: 23036
+Node: Wikipedia_sockpuppets, Count: 21442
+Node: Stub_categories, Count: 18324
+Node: Songs_by_artist, Count: 9148
+Node: Songs_by_songwriter, Count: 8563
+Node: Films_by_director, Count: 8544
+Node: Taxa_by_author, Count: 4549
+Node: Minor_league_baseball_players_by_team, Count: 4359
+Node: Musicians_by_band, Count: 3726
+[1]+  Done                    captureStats "$task" "$container"
+Iteration: 3: 7224 ms
+
+----------------------------------------------------------------------------------------
+Iteration 4 for task 'largestNumberOfChildren'...
+
+----------------------------------------------------------------------------------------
+Query: 
+                FOR node IN TaxonomyVertexCollection
+                    LET childrenCount = COUNT(
+                        FOR child IN 1..1 OUTBOUND node TaxonomyEdgeCollection
+                            RETURN child
+                )
+                SORT childrenCount DESC
+                LIMIT 10
+                RETURN {
+                    node: node,
+                    count: childrenCount
+                }
+
+Node: Albums_by_artist, Count: 23435
+Node: Suspected_Wikipedia_sockpuppets, Count: 23036
+Node: Wikipedia_sockpuppets, Count: 21442
+Node: Stub_categories, Count: 18324
+Node: Songs_by_artist, Count: 9148
+Node: Songs_by_songwriter, Count: 8563
+Node: Films_by_director, Count: 8544
+Node: Taxa_by_author, Count: 4549
+Node: Minor_league_baseball_players_by_team, Count: 4359
+Node: Musicians_by_band, Count: 3726
+[1]+  Done                    captureStats "$task" "$container"
+Iteration: 4: 7250 ms
+
+----------------------------------------------------------------------------------------
+Iteration 5 for task 'largestNumberOfChildren'...
+
+----------------------------------------------------------------------------------------
+Query: 
+                FOR node IN TaxonomyVertexCollection
+                    LET childrenCount = COUNT(
+                        FOR child IN 1..1 OUTBOUND node TaxonomyEdgeCollection
+                            RETURN child
+                )
+                SORT childrenCount DESC
+                LIMIT 10
+                RETURN {
+                    node: node,
+                    count: childrenCount
+                }
+
+Node: Albums_by_artist, Count: 23435
+Node: Suspected_Wikipedia_sockpuppets, Count: 23036
+Node: Wikipedia_sockpuppets, Count: 21442
+Node: Stub_categories, Count: 18324
+Node: Songs_by_artist, Count: 9148
+Node: Songs_by_songwriter, Count: 8563
+Node: Films_by_director, Count: 8544
+Node: Taxa_by_author, Count: 4549
+Node: Minor_league_baseball_players_by_team, Count: 4359
+Node: Musicians_by_band, Count: 3726
+[1]+  Done                    captureStats "$task" "$container"
+Iteration: 5: 7874 ms
+
+----------------------------------------------------------------------------------------
+Finished executing task 'largestNumberOfChildren' 5 times.
+########################################################################################
+
+Executing task 'neighborhoodPopularity' 5 times for benchmarking...
+Iteration 1 for task 'neighborhoodPopularity'...
+
+----------------------------------------------------------------------------------------
+Query: 
+                FOR node IN TaxonomyVertexCollection
+                    FILTER node.name == "Tourism_in_Uttarakhand"
+                    LET parentPopularity = SUM(
+                        FOR parent IN 1..5 INBOUND node TaxonomyEdgeCollection
+                            RETURN parent.popularity_score
+                    )
+                    LET childrenPopularity = SUM(
+                        FOR child IN 1..5 OUTBOUND node TaxonomyEdgeCollection
+                            RETURN child.popularity_score
+                    )
+                    LET totalPopularity = node.popularity_score + parentPopularity + childrenPopularity
+                    RETURN {
+                        node: node,
+                        count: totalPopularity
+                    }
+
+Node: Tourism_in_Uttarakhand, Count: 4970750
+[1]+  Done                    captureStats "$task" "$container"
+Iteration: 1: 1033 ms
+
+----------------------------------------------------------------------------------------
+Iteration 2 for task 'neighborhoodPopularity'...
+
+----------------------------------------------------------------------------------------
+Query: 
+                FOR node IN TaxonomyVertexCollection
+                    FILTER node.name == "Tourism_in_Uttarakhand"
+                    LET parentPopularity = SUM(
+                        FOR parent IN 1..5 INBOUND node TaxonomyEdgeCollection
+                            RETURN parent.popularity_score
+                    )
+                    LET childrenPopularity = SUM(
+                        FOR child IN 1..5 OUTBOUND node TaxonomyEdgeCollection
+                            RETURN child.popularity_score
+                    )
+                    LET totalPopularity = node.popularity_score + parentPopularity + childrenPopularity
+                    RETURN {
+                        node: node,
+                        count: totalPopularity
+                    }
+
+Node: Tourism_in_Uttarakhand, Count: 4970750
+[1]+  Done                    captureStats "$task" "$container"
+Iteration: 2: 863 ms
+
+----------------------------------------------------------------------------------------
+Iteration 3 for task 'neighborhoodPopularity'...
+
+----------------------------------------------------------------------------------------
+Query: 
+                FOR node IN TaxonomyVertexCollection
+                    FILTER node.name == "Tourism_in_Uttarakhand"
+                    LET parentPopularity = SUM(
+                        FOR parent IN 1..5 INBOUND node TaxonomyEdgeCollection
+                            RETURN parent.popularity_score
+                    )
+                    LET childrenPopularity = SUM(
+                        FOR child IN 1..5 OUTBOUND node TaxonomyEdgeCollection
+                            RETURN child.popularity_score
+                    )
+                    LET totalPopularity = node.popularity_score + parentPopularity + childrenPopularity
+                    RETURN {
+                        node: node,
+                        count: totalPopularity
+                    }
+
+Node: Tourism_in_Uttarakhand, Count: 4970750
+[1]+  Done                    captureStats "$task" "$container"
+Iteration: 3: 864 ms
+
+----------------------------------------------------------------------------------------
+Iteration 4 for task 'neighborhoodPopularity'...
+
+----------------------------------------------------------------------------------------
+Query: 
+                FOR node IN TaxonomyVertexCollection
+                    FILTER node.name == "Tourism_in_Uttarakhand"
+                    LET parentPopularity = SUM(
+                        FOR parent IN 1..5 INBOUND node TaxonomyEdgeCollection
+                            RETURN parent.popularity_score
+                    )
+                    LET childrenPopularity = SUM(
+                        FOR child IN 1..5 OUTBOUND node TaxonomyEdgeCollection
+                            RETURN child.popularity_score
+                    )
+                    LET totalPopularity = node.popularity_score + parentPopularity + childrenPopularity
+                    RETURN {
+                        node: node,
+                        count: totalPopularity
+                    }
+
+Node: Tourism_in_Uttarakhand, Count: 4970750
+[1]+  Done                    captureStats "$task" "$container"
+Iteration: 4: 929 ms
+
+----------------------------------------------------------------------------------------
+Iteration 5 for task 'neighborhoodPopularity'...
+
+----------------------------------------------------------------------------------------
+Query: 
+                FOR node IN TaxonomyVertexCollection
+                    FILTER node.name == "Tourism_in_Uttarakhand"
+                    LET parentPopularity = SUM(
+                        FOR parent IN 1..5 INBOUND node TaxonomyEdgeCollection
+                            RETURN parent.popularity_score
+                    )
+                    LET childrenPopularity = SUM(
+                        FOR child IN 1..5 OUTBOUND node TaxonomyEdgeCollection
+                            RETURN child.popularity_score
+                    )
+                    LET totalPopularity = node.popularity_score + parentPopularity + childrenPopularity
+                    RETURN {
+                        node: node,
+                        count: totalPopularity
+                    }
+
+Node: Tourism_in_Uttarakhand, Count: 4970750
+[1]+  Done                    captureStats "$task" "$container"
+Iteration: 5: 892 ms
+
+----------------------------------------------------------------------------------------
+Finished executing task 'neighborhoodPopularity' 5 times.
+########################################################################################
+
+Executing task 'shortestPathPopularity' 5 times for benchmarking...
+Iteration 1 for task 'shortestPathPopularity'...
+
+----------------------------------------------------------------------------------------
+Query: 
+                        LET startNode = FIRST(
+                            FOR v IN TaxonomyVertexCollection
+                                FILTER v.name == "Wikipedia_administration_by_MediaWiki_feature"
+                                RETURN v
+                        )
+
+                        LET endNode = FIRST(
+                            FOR v IN TaxonomyVertexCollection
+                                FILTER v.name == "1880s_films"
+                                RETURN v
+                        )
+
+                        LET shortestPath = (
+                            startNode != null AND endNode != null
+                            ? FIRST(
+                                FOR path IN OUTBOUND SHORTEST_PATH
+                                    startNode._id
+                                    TO endNode._id
+                                    GRAPH "WikipediaTaxonomyGraph"
+                                    RETURN path
+                            )
+                            : null
+                        )
+
+                        LET popularitySum = (
+                            shortestPath != null AND LENGTH(shortestPath.vertices) > 0
+                            ? SUM(
+                                FOR vertex IN shortestPath.vertices
+                                    FILTER HAS(vertex, "popularity_score") AND vertex.popularity_score != null
+                                    RETURN vertex.popularity_score
+                            )
+                            : null
+                        )
+
+                        RETURN shortestPath.popularity_score
+
+Wikipedia_administration_by_MediaWiki_feature -> 1880s_films, Score : 15587
+[1]+  Done                    captureStats "$task" "$container"
+Iteration: 1: 725 ms
+
+----------------------------------------------------------------------------------------
+Iteration 2 for task 'shortestPathPopularity'...
+
+----------------------------------------------------------------------------------------
+Query: 
+                        LET startNode = FIRST(
+                            FOR v IN TaxonomyVertexCollection
+                                FILTER v.name == "Wikipedia_administration_by_MediaWiki_feature"
+                                RETURN v
+                        )
+
+                        LET endNode = FIRST(
+                            FOR v IN TaxonomyVertexCollection
+                                FILTER v.name == "1880s_films"
+                                RETURN v
+                        )
+
+                        LET shortestPath = (
+                            startNode != null AND endNode != null
+                            ? FIRST(
+                                FOR path IN OUTBOUND SHORTEST_PATH
+                                    startNode._id
+                                    TO endNode._id
+                                    GRAPH "WikipediaTaxonomyGraph"
+                                    RETURN path
+                            )
+                            : null
+                        )
+
+                        LET popularitySum = (
+                            shortestPath != null AND LENGTH(shortestPath.vertices) > 0
+                            ? SUM(
+                                FOR vertex IN shortestPath.vertices
+                                    FILTER HAS(vertex, "popularity_score") AND vertex.popularity_score != null
+                                    RETURN vertex.popularity_score
+                            )
+                            : null
+                        )
+
+                        RETURN shortestPath.popularity_score
+
+Wikipedia_administration_by_MediaWiki_feature -> 1880s_films, Score : 15587
+[1]+  Done                    captureStats "$task" "$container"
+Iteration: 2: 721 ms
+
+----------------------------------------------------------------------------------------
+Iteration 3 for task 'shortestPathPopularity'...
+
+----------------------------------------------------------------------------------------
+Query: 
+                        LET startNode = FIRST(
+                            FOR v IN TaxonomyVertexCollection
+                                FILTER v.name == "Wikipedia_administration_by_MediaWiki_feature"
+                                RETURN v
+                        )
+
+                        LET endNode = FIRST(
+                            FOR v IN TaxonomyVertexCollection
+                                FILTER v.name == "1880s_films"
+                                RETURN v
+                        )
+
+                        LET shortestPath = (
+                            startNode != null AND endNode != null
+                            ? FIRST(
+                                FOR path IN OUTBOUND SHORTEST_PATH
+                                    startNode._id
+                                    TO endNode._id
+                                    GRAPH "WikipediaTaxonomyGraph"
+                                    RETURN path
+                            )
+                            : null
+                        )
+
+                        LET popularitySum = (
+                            shortestPath != null AND LENGTH(shortestPath.vertices) > 0
+                            ? SUM(
+                                FOR vertex IN shortestPath.vertices
+                                    FILTER HAS(vertex, "popularity_score") AND vertex.popularity_score != null
+                                    RETURN vertex.popularity_score
+                            )
+                            : null
+                        )
+
+                        RETURN shortestPath.popularity_score
+
+Wikipedia_administration_by_MediaWiki_feature -> 1880s_films, Score : 15587
+[1]+  Done                    captureStats "$task" "$container"
+Iteration: 3: 768 ms
+
+----------------------------------------------------------------------------------------
+Iteration 4 for task 'shortestPathPopularity'...
+
+----------------------------------------------------------------------------------------
+Query: 
+                        LET startNode = FIRST(
+                            FOR v IN TaxonomyVertexCollection
+                                FILTER v.name == "Wikipedia_administration_by_MediaWiki_feature"
+                                RETURN v
+                        )
+
+                        LET endNode = FIRST(
+                            FOR v IN TaxonomyVertexCollection
+                                FILTER v.name == "1880s_films"
+                                RETURN v
+                        )
+
+                        LET shortestPath = (
+                            startNode != null AND endNode != null
+                            ? FIRST(
+                                FOR path IN OUTBOUND SHORTEST_PATH
+                                    startNode._id
+                                    TO endNode._id
+                                    GRAPH "WikipediaTaxonomyGraph"
+                                    RETURN path
+                            )
+                            : null
+                        )
+
+                        LET popularitySum = (
+                            shortestPath != null AND LENGTH(shortestPath.vertices) > 0
+                            ? SUM(
+                                FOR vertex IN shortestPath.vertices
+                                    FILTER HAS(vertex, "popularity_score") AND vertex.popularity_score != null
+                                    RETURN vertex.popularity_score
+                            )
+                            : null
+                        )
+
+                        RETURN shortestPath.popularity_score
+
+Wikipedia_administration_by_MediaWiki_feature -> 1880s_films, Score : 15587
+[1]+  Done                    captureStats "$task" "$container"
+Iteration: 4: 671 ms
+
+----------------------------------------------------------------------------------------
+Iteration 5 for task 'shortestPathPopularity'...
+
+----------------------------------------------------------------------------------------
+Query: 
+                        LET startNode = FIRST(
+                            FOR v IN TaxonomyVertexCollection
+                                FILTER v.name == "Wikipedia_administration_by_MediaWiki_feature"
+                                RETURN v
+                        )
+
+                        LET endNode = FIRST(
+                            FOR v IN TaxonomyVertexCollection
+                                FILTER v.name == "1880s_films"
+                                RETURN v
+                        )
+
+                        LET shortestPath = (
+                            startNode != null AND endNode != null
+                            ? FIRST(
+                                FOR path IN OUTBOUND SHORTEST_PATH
+                                    startNode._id
+                                    TO endNode._id
+                                    GRAPH "WikipediaTaxonomyGraph"
+                                    RETURN path
+                            )
+                            : null
+                        )
+
+                        LET popularitySum = (
+                            shortestPath != null AND LENGTH(shortestPath.vertices) > 0
+                            ? SUM(
+                                FOR vertex IN shortestPath.vertices
+                                    FILTER HAS(vertex, "popularity_score") AND vertex.popularity_score != null
+                                    RETURN vertex.popularity_score
+                            )
+                            : null
+                        )
+
+                        RETURN shortestPath.popularity_score
+
+Wikipedia_administration_by_MediaWiki_feature -> 1880s_films, Score : 15587
+[1]+  Done                    captureStats "$task" "$container"
+Iteration: 5: 774 ms
+
+----------------------------------------------------------------------------------------
+Finished executing task 'shortestPathPopularity' 5 times.
+########################################################################################
+
+Executing task 'directPathWithHighPopularity' 5 times for benchmarking...
+Iteration 1 for task 'directPathWithHighPopularity'...
+
+----------------------------------------------------------------------------------------
+Query: 
+                LET startNode = FIRST(
+                    FOR v IN TaxonomyVertexCollection
+                        FILTER v.name == "Wikipedia_administration_by_MediaWiki_feature"
+                        RETURN v
+                )
+
+                LET endNode = FIRST(
+                    FOR v IN TaxonomyVertexCollection
+                        FILTER v.name == "1880s_films"
+                        RETURN v
+                )
+
+                LET allPaths = (
+                    startNode != null AND endNode != null
+                    ? (
+                        FOR path IN OUTBOUND K_SHORTEST_PATHS
+                            startNode._id
+                            TO endNode._id
+                            GRAPH "WikipediaTaxonomyGraph"
+                            LIMIT 10
+                            RETURN path
+                    )
+                    : []
+                )
+
+                LET pathsWithPopularity = (
+                    FOR path IN allPaths
+                        LET popularitySum = SUM(
+                            FOR vertex IN path.vertices
+                                FILTER HAS(vertex, "popularity_score") AND vertex.popularity_score != null
+                                RETURN vertex.popularity_score
+                        )
+                        RETURN { path, popularitySum }
+                )
+
+                LET bestPath = FIRST(
+                    FOR p IN pathsWithPopularity
+                        SORT p.popularitySum DESC
+                        RETURN p
+                )
+
+                RETURN {
+                    bestPath: bestPath != null ? bestPath.path : null,
+                    maxPopularity: bestPath != null ? bestPath.popularitySum : null
+                }
+
+Path:
+
+Vertices : [Vertex_Name: Wikipedia_administration_by_MediaWiki_feature, Vertex_Name: Wikipedia_namespace_administration, Vertex_Name: Wikipedia_namespaces, Vertex_Name: Articles, Vertex_Name: Main_topic_classifications, Vertex_Name: Entertainment, Vertex_Name: Film, Vertex_Name: Film_by_century, Vertex_Name: 19th_century_in_film, Vertex_Name: 1880s_in_film, Vertex_Name: 1880s_films]
+Weight : 10, Max Popularity : 241751
+[1]+  Done                    captureStats "$task" "$container"
+Iteration: 1: 1499 ms
+
+----------------------------------------------------------------------------------------
+Iteration 2 for task 'directPathWithHighPopularity'...
+
+----------------------------------------------------------------------------------------
+Query: 
+                LET startNode = FIRST(
+                    FOR v IN TaxonomyVertexCollection
+                        FILTER v.name == "Wikipedia_administration_by_MediaWiki_feature"
+                        RETURN v
+                )
+
+                LET endNode = FIRST(
+                    FOR v IN TaxonomyVertexCollection
+                        FILTER v.name == "1880s_films"
+                        RETURN v
+                )
+
+                LET allPaths = (
+                    startNode != null AND endNode != null
+                    ? (
+                        FOR path IN OUTBOUND K_SHORTEST_PATHS
+                            startNode._id
+                            TO endNode._id
+                            GRAPH "WikipediaTaxonomyGraph"
+                            LIMIT 10
+                            RETURN path
+                    )
+                    : []
+                )
+
+                LET pathsWithPopularity = (
+                    FOR path IN allPaths
+                        LET popularitySum = SUM(
+                            FOR vertex IN path.vertices
+                                FILTER HAS(vertex, "popularity_score") AND vertex.popularity_score != null
+                                RETURN vertex.popularity_score
+                        )
+                        RETURN { path, popularitySum }
+                )
+
+                LET bestPath = FIRST(
+                    FOR p IN pathsWithPopularity
+                        SORT p.popularitySum DESC
+                        RETURN p
+                )
+
+                RETURN {
+                    bestPath: bestPath != null ? bestPath.path : null,
+                    maxPopularity: bestPath != null ? bestPath.popularitySum : null
+                }
+
+Path:
+
+Vertices : [Vertex_Name: Wikipedia_administration_by_MediaWiki_feature, Vertex_Name: Wikipedia_namespace_administration, Vertex_Name: Wikipedia_namespaces, Vertex_Name: Articles, Vertex_Name: Main_topic_classifications, Vertex_Name: Entertainment, Vertex_Name: Film, Vertex_Name: Film_by_century, Vertex_Name: 19th_century_in_film, Vertex_Name: 1880s_in_film, Vertex_Name: 1880s_films]
+Weight : 10, Max Popularity : 241751
+[1]+  Done                    captureStats "$task" "$container"
+Iteration: 2: 1169 ms
+
+----------------------------------------------------------------------------------------
+Iteration 3 for task 'directPathWithHighPopularity'...
+
+----------------------------------------------------------------------------------------
+Query: 
+                LET startNode = FIRST(
+                    FOR v IN TaxonomyVertexCollection
+                        FILTER v.name == "Wikipedia_administration_by_MediaWiki_feature"
+                        RETURN v
+                )
+
+                LET endNode = FIRST(
+                    FOR v IN TaxonomyVertexCollection
+                        FILTER v.name == "1880s_films"
+                        RETURN v
+                )
+
+                LET allPaths = (
+                    startNode != null AND endNode != null
+                    ? (
+                        FOR path IN OUTBOUND K_SHORTEST_PATHS
+                            startNode._id
+                            TO endNode._id
+                            GRAPH "WikipediaTaxonomyGraph"
+                            LIMIT 10
+                            RETURN path
+                    )
+                    : []
+                )
+
+                LET pathsWithPopularity = (
+                    FOR path IN allPaths
+                        LET popularitySum = SUM(
+                            FOR vertex IN path.vertices
+                                FILTER HAS(vertex, "popularity_score") AND vertex.popularity_score != null
+                                RETURN vertex.popularity_score
+                        )
+                        RETURN { path, popularitySum }
+                )
+
+                LET bestPath = FIRST(
+                    FOR p IN pathsWithPopularity
+                        SORT p.popularitySum DESC
+                        RETURN p
+                )
+
+                RETURN {
+                    bestPath: bestPath != null ? bestPath.path : null,
+                    maxPopularity: bestPath != null ? bestPath.popularitySum : null
+                }
+
+Path:
+
+Vertices : [Vertex_Name: Wikipedia_administration_by_MediaWiki_feature, Vertex_Name: Wikipedia_namespace_administration, Vertex_Name: Wikipedia_namespaces, Vertex_Name: Articles, Vertex_Name: Main_topic_classifications, Vertex_Name: Entertainment, Vertex_Name: Film, Vertex_Name: Film_by_century, Vertex_Name: 19th_century_in_film, Vertex_Name: 1880s_in_film, Vertex_Name: 1880s_films]
+Weight : 10, Max Popularity : 241751
+[1]+  Done                    captureStats "$task" "$container"
+Iteration: 3: 1191 ms
+
+----------------------------------------------------------------------------------------
+Iteration 4 for task 'directPathWithHighPopularity'...
+
+----------------------------------------------------------------------------------------
+Query: 
+                LET startNode = FIRST(
+                    FOR v IN TaxonomyVertexCollection
+                        FILTER v.name == "Wikipedia_administration_by_MediaWiki_feature"
+                        RETURN v
+                )
+
+                LET endNode = FIRST(
+                    FOR v IN TaxonomyVertexCollection
+                        FILTER v.name == "1880s_films"
+                        RETURN v
+                )
+
+                LET allPaths = (
+                    startNode != null AND endNode != null
+                    ? (
+                        FOR path IN OUTBOUND K_SHORTEST_PATHS
+                            startNode._id
+                            TO endNode._id
+                            GRAPH "WikipediaTaxonomyGraph"
+                            LIMIT 10
+                            RETURN path
+                    )
+                    : []
+                )
+
+                LET pathsWithPopularity = (
+                    FOR path IN allPaths
+                        LET popularitySum = SUM(
+                            FOR vertex IN path.vertices
+                                FILTER HAS(vertex, "popularity_score") AND vertex.popularity_score != null
+                                RETURN vertex.popularity_score
+                        )
+                        RETURN { path, popularitySum }
+                )
+
+                LET bestPath = FIRST(
+                    FOR p IN pathsWithPopularity
+                        SORT p.popularitySum DESC
+                        RETURN p
+                )
+
+                RETURN {
+                    bestPath: bestPath != null ? bestPath.path : null,
+                    maxPopularity: bestPath != null ? bestPath.popularitySum : null
+                }
+
+Path:
+
+Vertices : [Vertex_Name: Wikipedia_administration_by_MediaWiki_feature, Vertex_Name: Wikipedia_namespace_administration, Vertex_Name: Wikipedia_namespaces, Vertex_Name: Articles, Vertex_Name: Main_topic_classifications, Vertex_Name: Entertainment, Vertex_Name: Film, Vertex_Name: Film_by_century, Vertex_Name: 19th_century_in_film, Vertex_Name: 1880s_in_film, Vertex_Name: 1880s_films]
+Weight : 10, Max Popularity : 241751
+[1]+  Done                    captureStats "$task" "$container"
+Iteration: 4: 1222 ms
+
+----------------------------------------------------------------------------------------
+Iteration 5 for task 'directPathWithHighPopularity'...
+
+----------------------------------------------------------------------------------------
+Query: 
+                LET startNode = FIRST(
+                    FOR v IN TaxonomyVertexCollection
+                        FILTER v.name == "Wikipedia_administration_by_MediaWiki_feature"
+                        RETURN v
+                )
+
+                LET endNode = FIRST(
+                    FOR v IN TaxonomyVertexCollection
+                        FILTER v.name == "1880s_films"
+                        RETURN v
+                )
+
+                LET allPaths = (
+                    startNode != null AND endNode != null
+                    ? (
+                        FOR path IN OUTBOUND K_SHORTEST_PATHS
+                            startNode._id
+                            TO endNode._id
+                            GRAPH "WikipediaTaxonomyGraph"
+                            LIMIT 10
+                            RETURN path
+                    )
+                    : []
+                )
+
+                LET pathsWithPopularity = (
+                    FOR path IN allPaths
+                        LET popularitySum = SUM(
+                            FOR vertex IN path.vertices
+                                FILTER HAS(vertex, "popularity_score") AND vertex.popularity_score != null
+                                RETURN vertex.popularity_score
+                        )
+                        RETURN { path, popularitySum }
+                )
+
+                LET bestPath = FIRST(
+                    FOR p IN pathsWithPopularity
+                        SORT p.popularitySum DESC
+                        RETURN p
+                )
+
+                RETURN {
+                    bestPath: bestPath != null ? bestPath.path : null,
+                    maxPopularity: bestPath != null ? bestPath.popularitySum : null
+                }
+
+Path:
+
+Vertices : [Vertex_Name: Wikipedia_administration_by_MediaWiki_feature, Vertex_Name: Wikipedia_namespace_administration, Vertex_Name: Wikipedia_namespaces, Vertex_Name: Articles, Vertex_Name: Main_topic_classifications, Vertex_Name: Entertainment, Vertex_Name: Film, Vertex_Name: Film_by_century, Vertex_Name: 19th_century_in_film, Vertex_Name: 1880s_in_film, Vertex_Name: 1880s_films]
+Weight : 10, Max Popularity : 241751
+[1]+  Done                    captureStats "$task" "$container"
+Iteration: 5: 1181 ms
+
+----------------------------------------------------------------------------------------
+Finished executing task 'directPathWithHighPopularity' 5 times.
+########################################################################################
+
+Benchmarking completed. Results saved to individual task files.

@@ -1,0 +1,21 @@
+task10Command='./dbcli 10 10'
+Node: Albums_by_artist, Count: 23435
+
+
+
+task16Command='./dbcli 16 "Tourism_in_Uttarakhand" 5'
+Node: Tourism_in_Uttarakhand, Count: 4970750
+
+
+
+
+task17Command='./dbcli 17 "Wikipedia_administration_by_MediaWiki_feature" "1880s_films"'
+Wikipedia_administration_by_MediaWiki_feature -> 1880s_films, Score : 15587
+
+
+
+
+task18Command='./dbcli 18 "Wikipedia_administration_by_MediaWiki_feature" "1880s_films" 10 50'
+Vertices : [Vertex_Name: Wikipedia_administration_by_MediaWiki_feature, Vertex_Name: Wikipedia_namespace_administration, Vertex_Name: Wikipedia_namespaces, Vertex_Name: Articles, Vertex_Name: Main_topic_classifications, Vertex_Name: Entertainment, Vertex_Name: Film, Vertex_Name: Film_by_century, Vertex_Name: 19th_century_in_film, Vertex_Name: 1880s_in_film, Vertex_Name: 1880s_films]
+Weight : 10, Max Popularity : 241751
+
