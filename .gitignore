@@ -2,6 +2,5 @@
 **/obj/
 **/bin/
 **/publish/
-**/Resources/
-**/ResourcesCopy/
 **/dbcli
+/resources/
