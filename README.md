@@ -1,79 +1,82 @@
-# Dokumentacja Bazydanych
+# Final project for Advanced Database university course Documentation
 
-# DBCLI Projekt
+# DBCLI Project
 
-Bartłomiej Matuszewski
+Project was prepared by:
 
-Jakub Fudro
+- Bartłomiej Matuszewski  
 
-## 1. Wybór technologii
+- Jakub Fudro
 
-Podczas pracy nad projektem używaliśmy technologii:
+## 1. Choice of Technologies
 
-- **komenda linuxa tar do rozpakowania plików .gz**
-- **git oraz github do kontroli wersji**
-- **Arango DB - Community Edition**
-- python 3.10 - wstępna analiza danych (pliki .csv)
-- rust 1.83 - próba implementacji programu, pomysł porzucony przez słabą znajomość biblioteki do obsługi Aranago DB (arangors), oraz słabą dokumentację.
-- **C#/.NET 8.0 - faktyczna i działająca implementacja programu**
+While working on the project we used the following technologies:
 
-Finalna wersja programu nie ma dodatkowych zależności poza C#/.NET'em oraz Arango DB - Community Edition.
+- **Linux `tar` command to unpack .gz files**
+- **git and GitHub for version control**
+- **ArangoDB - Community Edition**
+- Python 3.10 – initial data analysis (CSV files)
+- Rust 1.83 – attempted implementation of the program; idea abandoned due to weak familiarity with the ArangoDB client library (arangors) and poor documentation
+- **C#/.NET 8.0 – the actual, working implementation of the program**
 
-## 2.Architektura
+The final version of the program has no additional dependencies besides C#/.NET and ArangoDB - Community Edition.
+
+## 2. Architecture
 
 ![alt text](docs/ztb.drawio.png)
 
-## 3. Wymagania i zależności (moduły oprogramowania, bazy danych itp.)
+## 3. Requirements and Dependencies (software modules, databases, etc.)
 
-### 3.1 Wymagania systemowe
+### 3.1 System Requirements
 
-Projekt w całości powstał na systemie operacyjnym Linux Ubuntu 20.04.1 (LTS).
+The project was fully developed on Linux Ubuntu 24.04.1 (LTS).
 
-### 3.2 Technologia bazodanowa
+### 3.2 Database Technology
 
-Jako bazę danych wybraliśmy Arango DB - Community Edition. Arango obsługuje natywnie grafy oraz ma wbudowane funkcje grafowe typu shortest path.
+As the database we chose ArangoDB - Community Edition. Arango natively supports graphs and has built-in graph functions such as shortest path.
 
-### 3.3 Technologia programistyczna
+### 3.3 Programming Technology
 
-Jako język programowania wybraliśmy C#/.NET 8.0. Popularna technolgia korporacyjna do tworzenia aplikacji.
-Technologia jest multiplatformowa i ma licencję MIT.
-W naszym projekcie wykorzystaliśmy .NET w wersji 8.0 (najnowszy standard w momencie ropoczynania pracy).
-Do komunikacji z bazą danych użyliśmy biblioteki ArangoDBNetStandard.
-Jest to oficjalna biblioteka do komunikacji z bazą udostępniona przez producenta.
-Biblioteka działa pod licencją Apache 2.0.
+As the programming language we chose C#/.NET 8.0, a popular corporate technology for building applications.  
+The technology is cross-platform and uses the MIT license.  
+In our project we used .NET version 8.0 (the newest standard at the time we started the work).  
 
-### 3.4 Moduły programu
+For communication with the database we used the ArangoDBNetStandard library.  
+It is the official database client library provided by the vendor.  
+The library is licensed under Apache 2.0.
 
-Drzewko programu wygląda następująco:
+### 3.4 Program Modules
+
+The project tree looks as follows:
 
 ![alt text](docs/image-1.png)
 
 ### 3.4.1 DbcliArangoLoader
 
-Bilioteka do naprawienia pliku popularity_iw.csv, który jest źródłem danych popularności dla node'ów grafu.
-Drugą funkcją biblioteki jest kolekcja funkcji do ładowania danych do bazy ArangoDB.
+A library used to fix the `popularity_iw.csv` file, which is the source of popularity data for graph nodes.  
+The second responsibility of this library is a collection of functions for loading data into the ArangoDB database.
 
 ### 3.4.2 DbcliCoreUtilities
 
-Biblioteka zawierająca funkcje wykonujace odpowiednie query na grafie w bazie ArangoDB.
+A library that contains functions executing the appropriate queries on the graph in ArangoDB.
 
 ### 3.4.3 DbcliModels
 
-Biblioteka zawierająca modele danych, które są używane w programie. Głównie są to klasy reprezentujące wartości zwracane przez query podczas zapytań, oraz klasa do seserializacji config'a.
+A library that contains data models used in the program. Mainly these are classes representing values returned by queries, as well as a class for deserializing the config file.
 
 ### 3.4.4 DbcliProject
 
-Klasa sklejająca cały solution i udostępniająca interfejs cli do uruchamiania odpowiednich tasków.
+A project that wires the whole solution together and exposes a CLI interface to run the appropriate tasks.
 
-## 4. Instrukcje instalacji i konfguracji
+## 4. Installation and Configuration Instructions
 
-W każdej pod-sekcji wklejamy linki do stron z instrukcjami instalacji i konfiguracji ponieważ może się to zmieniać w czasie.
+In each subsection we include links to installation and configuration guides, because these may change over time.
 
-### 4.1 Instalacja Araango DB
+### 4.1 ArangoDB Installation
 
-Link do instrukcji instalacji Arango DB na Ubuntu: [Arango DB - Community Edition](https://arangodb.com/download-major/ubuntu/)
+Link to the ArangoDB installation instructions on Ubuntu: [ArangoDB - Community Edition](https://arangodb.com/download-major/ubuntu/)
 
-Dodanie kluczy do repozytorium:
+Add the keys to the repository:
 
 ```bash
 curl -OL <https://download.arangodb.com/arangodb312/DEBIAN/Release.key>
@@ -81,7 +84,7 @@ sudo apt-key add - < Release.key
 
 ```
 
-Instalacja apt-get'em:
+Install via apt-get:
 
 ```bash
 echo 'deb <https://download.arangodb.com/arangodb312/DEBIAN/> /' | sudo tee /etc/apt/sources.list.d/arangodb.list
@@ -91,82 +94,82 @@ sudo apt-get install arangodb3=3.12.3-1
 
 ```
 
-### 4.2 Instalacja .NET
+### 4.2 .NET Installation
 
-Link do instrukcji instalacji .NET na Ubuntu: [.NET](http://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet8&pivots=os-linux-ubuntu-2404)
+Link to the .NET installation instructions on Ubuntu: [.NET](http://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet8&pivots=os-linux-ubuntu-2404)
 
 ```bash
 sudo apt-get update && \\
   sudo apt-get install -y dotnet-sdk-8.0
 ```
 
-## 5. Instrukcja obsługi (jak uruchomić program)
+## 5. User instructions (on how to run the program)
 
-W celu zbudowania dociera w głównym folderze projektu należy użyć komendy docker compose up -d. Po zakończeniu budowy projektu możliwe będzie użycie komendy docker exec -it adv-db-systems.app /bin/bash, polecenie to uruchomi shel wewnątrz dociera. Z poziomu dockerowego shela możliwe będzie używanie komend ustalonych w projekcie aplikacji.
+To build the container in the main project folder you need to use the command `docker compose up -d`. After the project build is finished it will be possible to use the command docker exec -it adv-db-systems.app /bin/bash; this command will start a shell inside the container. From the Docker shell it will be possible to use the commands defined in the application project.
 
-## 6. Proces projektowania i wdrażania krok po kroku
+## 6. Step-by-step design and deployment process
 
-Dzięki szerokiemu wachlarzowi funkcji zaimplementowanych w Arango db proces projektowania systemu ograniczył się do zapoznania z możliwościami systemu bazodanowego.
+Thanks to the wide range of functions implemented in ArangoDB, the system design process was limited to getting familiar with the capabilities of the database system.
 
-Pierwszym krokiem w procesie wdrażania rozwiązania były testy z użyciem wbudowanego interfaceu Arangodb, celem testów było sprawdzenie które z funkcjonalności możemy obsłużyć używając jedynie wbudowanych funkcji systemu bazodanowego. Arangodb jest w stanie obsłużyć wszystkie wymagane funkcjonalności przy pomocy wbudowanych funkcji.
+The first step in the process of implementing the solution was testing using the built-in ArangoDB interface; the purpose of the tests was to check which functionalities we can support using only the built-in database system functions. ArangoDB is able to support all required functionalities using the built-in functions.
 
-Kolejnym korkiem było przygotowanie funkcjonalności łączenia się z bazą danych przy pomocy kodu C#, użyta biblioteka była łatwa w obsłudze i pozwalała na przesyłanie zapytań formie string.
+The next step was preparing the functionality of connecting to the database using C# code; the library used was easy to use and allowed sending queries in string form.
 
-Następnie przygotowaliśmy 18 metod (każda z nich odpowiada zadaniu jakie realizować ma aplikacja). Każda z tych metod ma jeden cel, część z nich wymagała parametryzacja.
+Next we prepared 18 methods (each of them corresponds to a task that the application is expected to perform). Each of these methods has a single goal; some of them required parameterization.
 
-Kolejnym krokiem było przygotowanie parsera który na podstawie komendy przyjętej przez użytkownika uruchomi odpowiednią metodę aplikacji i jeśli to koniecznie przekaże do niej parametry.
+The next step was preparing a parser which, based on the command provided by the user, will run the appropriate application method and, if necessary, pass parameters to it.
 
-Ostatnim krokiem było przygotowanie środowiska docker które pozwala na szybki deployment aplikacji niezależnie od środowiska w którym jest ona uruchamiana.
+The last step was preparing a Docker environment which allows quick deployment of the application regardless of the environment in which it is run.
 
-## 7. Role wszystkich osób w projekcie i opis tego, kto co zrobił
+## 7. Roles of all people in the project and description of who did what
 
-Bartłomiej Matuszewski: testy w środowisku ArangoDB, przygotowanie zapytań bazodanowych, implementacja kodu C#
+Bartłomiej Matuszewski: tests in the ArangoDB environment, preparation of database queries, implementation of C# code
 
-Jakub Fudro: testy w środowisku ArangoDB, przygotowanie zapytań bazodanowych
+Jakub Fudro: tests in the ArangoDB environment, preparation of database queries
 
-## 8. Wyniki
+## 8. Results
 
-Niestety nasz deployment w środowisku docker nie pozwolił na przeprowadzenie testów, w trakcie populacji bazy danych aplikacja zwraca wiele błędów. Liczba edge nie zgadza się z liczbą jaka powinna znajdować się w bazie danych. Próba przeprowadzenia kolejnych testów (zadania 10 oraz 16-18) byłaby niemiarodajna lub nie możliwa (ścieżki jakie miał zwrócić program mogą nie istnieć)
+Unfortunately our deployment in the Docker environment did not allow us to perform tests; during the population of the database the application returns many errors. The number of edges does not match the number that should be in the database. Attempting to carry out further tests (tasks 10 and 16–18) would be unreliable or impossible (the paths the program was supposed to return may not exist).
 
-## 9. Instrukcja krok po kroku jak odtworzyć wyniki
+## 9. Step-by-step instructions on how to reproduce the results
 
-Skrypt benchmarkowy powinien zwrócić 6 plików (1 plik na każdą z mierzonych funkcji) które następnie powinny zostać podsumowane  przy pomocy Jupyter notebooka. Notatki podsumowuje i oblicza średnią dla 4 ustalonych funkcji i generuje wykresy obrazujące działanie aplikacji w czasie.
+The benchmarking script should produce 6 files (1 file for each of the measured functions) which should then be summarized using a Jupyter notebook. The notebook summarizes and calculates the average for 4 selected functions and generates plots illustrating the behavior of the application over time.
 
-## 10. Samoocena: należy omówić efektywność
+## 10. Self-assessment: discussion of effectiveness
 
-Funkcje od 1 do 18 wykonują się bardzo szybko, sam system bazodanowy jest dobrze zoptymalizowany a przygotowany przez nasz zespół wraper C# nie wpływa znacząco na efektywność wykonywania zapytań. Problemem jest populacja bazy danych, zapisywanie bazy danymi jest powolne, interface przeglądarkowy jak i ten CLI wykonują operacje zapisu danych znacznie szybciej.
+Functions from 1 to 18 execute very quickly, the database system itself is well optimized, and the C# wrapper prepared by our team does not significantly affect the efficiency of query execution. The problem is the population of the database; writing data into the database is slow, the browser interface and the CLI interface perform data write operations significantly faster.
 
-## 11. Strategie przyszłęgo łagodzenia zidentyfikowanych niedociągnięć
+## 11. Strategies for future mitigation of identified shortcomings
 
-Największym problemem projektu jest populacja bazy danych, podejrzewamy, że skorzystanie z narzędzi CLI przygotowanych przez deweloperów systemu ArangoDB może usprawnić proces ładowania danych
+The biggest problem of the project is the population of the database; we suspect that using the CLI tools prepared by the developers of the ArangoDB system may improve the data loading process.
 
-# Dokumentacja Techniczna (szczegółowa)
+# Technical Documentation (more detailes, corrections)
 
-Podczas developowania oraz testowania aplikacji korzystaliśmy z systemu operacyjnego Ubuntu 20.04.1 (LTS), który obydwoje mamy zainstalowanego na osobistych komputerach.
-Arango DB - Community Edition w wersji 3.12.3 na systemy linux (konkretnie na Ubuntu 24.04) było zainstalowane lokalnie na systemie bez kontenerów.
+During development and testing of the application we used the Ubuntu 20.04.1 (LTS) operating system, which we both have installed on our personal computers.
+ArangoDB – Community Edition version 3.12.3 for Linux (specifically Ubuntu 24.04) was installed locally on the system without containers.
 
 ![](docs/image-2.png)
 
-Środowisko programistyczne/technologia programistyczna której używaliśmy to .NET 8.0 oraz C# w wersji 12.
+The programming environment/technology we used was .NET 8.0 and C# version 12.
 
-## Setup środowiska developerskiego
+## Developer environment setup
 
-Aby zainstalować paczki do .NET'a oraz Arango DB używaliśmy package managera apt-get.
-Poniżej przedstwiamy szczegółowe instrukcje jak zinstalwoać te paczki na systemie linux/ubuntu.
+To install the .NET and ArangoDB packages we used the apt-get package manager.
+Below we present detailed instructions on how to install these packages on a Linux/Ubuntu system.
 
-### Instalacja Arango DB
+### Installing ArangoDB
 
-Aby zainstalować Arango DB w wersji community edition na naszym systemie posługiwaliśmy się istrukcjami na stronie producenta: [Arango DB - Community Edition](https://arangodb.com/download-major/ubuntu/).
+To install ArangoDB Community Edition on our system we followed the instructions on the vendor’s website: [Arango DB - Community Edition](https://arangodb.com/download-major/ubuntu/).
 
-Wstępnym wymaganiem jest rejestracja klczy do repozytorium ArangoDB:
+The initial requirement is registering the keys for the ArangoDB repository:
 
 ```bash
 curl -OL https://download.arangodb.com/arangodb312/DEBIAN/Release.key
 sudo apt-key add - < Release.key
 ```
 
-W oczywisty sposób potrzeba nam narzędzia curl do ściągnięcia odpowiednich plików z kluczami do repozytorium.
-Następnie faktyczna część instalacji przedstawia się następująco:
+In an obvious way we need the curl tool to download the appropriate files with the keys for the repository.
+Then the actual installation looks as follows:
 
 ```bash
 echo 'deb https://download.arangodb.com/arangodb312/DEBIAN/ /' | sudo tee /etc/apt/sources.list.d/arangodb.list
@@ -175,135 +178,134 @@ sudo apt-get update
 sudo apt-get install arangodb3=3.12.3-1
 ```
 
-Podczas instalacji musieliśmy podać hasło do użytkownika root'a w bazie danych.
-Aby ułatwić process tworzenia oprogramowania nie tworzylismy dodatkowego użytkownika w bazie danych, a korzystaliśmy z użytkownika root'a.
+During the installation we had to provide the password for the root user in the database.
+To simplify the software development process we did not create an additional user in the database and used the root user.
+Installing .NET
 
-### Instalacja .NET
-
-Najlepszym rozwiązaniem aby installować .NET jest korzystanie z [dokumentacji Microsoftu](http://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet8&pivots=os-linux-ubuntu-2404).
-Podąrzając się za instrukcjami z tej strony zainstalowaliśmy .NET 8.0 na naszym systemie. Był to wtedy najnowszy oferowany standard języka.
-Instalacja .NET'a na systemie linux/ubuntu jest łatwiejsza o tyle że nie trzeba dodawać dodatkowych repozytoriów, wystarczy użyć apt-get'a:
+The best solution for installing .NET is to use the [Microsoft docs](http://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet8&pivots=os-linux-ubuntu-2404).
+Following the instructions from this page we installed .NET 8.0 on our system. It was then the newest available language standard.
+Installing .NET on Linux/Ubuntu is easier in that you do not need to add additional repositories; it is enough to use apt-get:
 
 ```bash
 sudo apt-get update && \
 sudo apt-get install -y aspnetcore-runtime-8.0
 ```
 
-## Użyte biblioteki .NET
+## .NET libraries used
 
 ### ArangoDBNetStandard
 
-Jest to oficjalna biblioteka do komunikacji z bazą ArangoDB udostępniona przez producenta, korzystaliśmy głównie z funkcjonalności do wykonywania zapytań na endpoint REST'owy bazy danych.
+This is the official library for communication with the ArangoDB database provided by the vendor; we mainly used the functionality for executing queries against the database’s REST endpoint.
 
 ### Newtonsoft.Json
 
-Jest to najpopularniejsza biblioteka do serializacji i deserializacji JSON'a w .NET'cie, wykorzystywana do parsowania pliku **dbcli_config.json**, oraz do parsowania odpowiedzi zapytań do bazy danych.
+This is the most popular library for JSON serialization and deserialization in .NET, used for parsing the dbcli_config.json file and parsing query responses from the database.
 
 ### CsvHelper
 
-Biblioteka do obsługi plików .csv, używana do parsowania plików **taxonomy_iw.csv** oraz **popularity_iw.csv**.
+A library for handling .csv files, used for parsing the taxonomy_iw.csv and popularity_iw.csv files.
 
-### Dodatkowe uwagi
+### Additional notes
 
-Wszystkie biblioteki są pobierane z użyciem package managera NuGet, który jest oficjalnym i bardzo płynnie działającym narzędziem do zarządzania paczkami w .NET'cie.
-Aby biblioteki były dostępne w naszym projekcie należało dodać odpowiednie referencje w plikach .csproj, a następnie na wysokości pliku **.sln** wywołać komendy:
+All libraries are downloaded using the NuGet package manager, which is the official and very smooth-working tool for package management in .NET.
+To make the libraries available in our project we needed to add appropriate references in the **.csproj** files and then, at the **.sln** level, run the commands:
 
 ```bash
 dotnet restore
-
 dotnet build
 ```
 
-W ten sposób **dotnet** pobierze wszystkie potrzebne paczki, oraz zbuduje nasz projekt.
+In this way **dotnet** will download all required packages and build our project.
 
-## Struktura projektu/oprogramowania
+## Project/software structure
 
-Nasz projek składa się z folderu solution, który trzyma nasze repozytorium gitowe oraz wszystkie projekty które składają się na naszą aplikację.
-Taka struktura jest standardowa dla projektów .NET.
+Our project consists of a solution folder which holds our git repository and all projects which make up our application.
+This structure is standard for .NET projects.
 
 ![alt text](docs/image-1.png)
 
 ### DbcliArangoLoader
 
-Jest to projekt biblioteki programistycznej .NET, która zawiera funkcjonalności do naprawy oraz ładowania danych do bazy ArangoDB.
-Klasa **CsvFixer** zawiera definicję funkcji statycznej (w języku C# nie ma funkcji globalnych, można tką funkcjonalność symulować tworząc klasy zawierające statyczne metody) która naprawia plik **popularity_iw.csv**.
-Klasy **TaxonomyLoader** oraz **PopularityLoader** mają za zadanie załadować dane z plików **taxonomy.csv** oraz **popularity_iw.csv** do pamięci programu.
-Takie rozwiązanie jest dosyć icężkie dla pamięci, ale przez to jak wyglądał nasz proces developowania było to rozwiązanie które mieliśmy już przygotowane.
-**TaxonomyLoader** ładuje dane z pliku do słownika w następujący sposób:
+This is a .NET class library project that contains the functionality for repairing and loading data into the ArangoDB database.
+The **CsvFixer** class contains the definition of a static function (in C# there are no global functions; such functionality can be simulated by creating classes containing static methods) that repairs the **popularity_iw.csv** file.
+The **TaxonomyLoader** and **PopularityLoader** classes load data from the **taxonomy.csv** and **popularity_iw.csv** files into program memory.
+This solution is quite memory-heavy, but because of the structure of our development process, it was the solution we already had prepared.
+**TaxonomyLoader** loads data from the file into a dictionary as follows:
 
-- odpowiednie zdefiniowanie w jaki sposób .csv używa separatorów, czy plik zawiera nagłówki, oraz oraz tzw. 'escape character'
-- po otwarciu pliku zczytywany jest node źródłowy oraz node docelowy
-- sprawdzane jest czy node znajdują się w słowniku (jeśli nie to są dodawane, oraz jest dla nich generownay GUID).
+- appropriately defining how the .csv uses separators, whether the file contains headers, and the escape character
+- after opening the file, the source node and target node are read
+- checking whether the nodes exist in the dictionary (if not, they are added and a GUID is generated for them)
 
-Taka procedura jest spowodowana ponieważ _key w bazie ArangoDB musi spełniać specjalne zasady znakowe tzn. nie mogą to być znaki inne niż z alfabetu łacińskiego, oraz pewne znaki specjalne.
-[Tutaj](https://docs.arangodb.com/3.11/concepts/data-structure/documents/#user-specified-keys) można podejrzeć dokładne zasady tworzenia klucza.
-Node'y z naprawionego pliku **popularity_iw.csv** są adowane do pamieci w podobny sposób.
-Value dla node'a jest jego wartość popularności.
+This procedure is necessary because the `_key` in ArangoDB must follow specific character rules, meaning that it cannot contain characters outside the Latin alphabet or certain special characters.
+You can check the exact key requirements [here](https://docs.arangodb.com/3.11/concepts/data-structure/documents/#user-specified-keys).
+Nodes from the repaired **popularity_iw.csv** file are loaded into memory in a similar way.
+The value of a node is its popularity score.
 
-**PopulateDatabase** jest klasą która zawiera funkcje służace już do komunikacji z bazą danych i wykonywania na niej konkretnych operacji.
-Metody tej klasy służa do:
+**PopulateDatabase** is the class that contains functions for communicating with the database and performing specific operations.
+The methods of this class are used to:
 
-- dropowania bazy danych jezeli istnieje
-- tworzenia bazy danych
-- przygotowania instancji **Graph**
-- dodawania node'ów do bazy danych (wprowadzania kolekcji node'ów)
-- dodawania edge'ów do bazy danych (wprowadzania kolekcji edge'ów)
-- dodatkowo znajduje się tam metoda do wywołania metod w odpowiedniej kolejności aby poprawnie załadować dane do bazy danych
+- drop the database if it exists
+- create the database
+- prepare the **Graph** instance
+- add nodes to the database (insert node collections)
+- add edges to the database (insert edge collections)
+- additionally, there is a method that calls the other methods in the correct order to properly load data into the database
 
 ### DbcliCoreUtilities
 
-Jest to projekt biblioteki programistycznej .NET, która zawiera funkcjonalności do wywoływania odpowiednich zapytań na bazie danych specyfikowanych w pdf'ie z treścią zadań do wykonaia do ukonczenia projektu.
-Klasa **DbTasks** zawiera 18 metod, każda z nich odpowiada jednemu z zadań które mieliśmy do wykonania.
-Klasa **DbConnector** zawiera metodę statyczną do łączenia się z bazą danych.
+This is a .NET class library project that contains functionality for executing specific queries on the database, as specified in the project PDF.
+The **DbTasks** class contains 18 methods, each of which corresponds to one of the tasks we had to complete.
+The **DbConnector** class contains a static method for connecting to the database.
 
-Nie będę opisywał każdej z metod z klasy **DbTasks** ponieważ każda z nich jest opisana w pliku ze specyfikacją projektu, a ich kod jest na tyle przejrzysty że byłoby to dodatkowo reduntatne.
+We are not describing each method from **DbTasks**, because each of them is explained in the project specification file, and their code is clear enough that additional explanation would be redundant.
 
 ### DbcliModels
 
-Jest to projekt biblioteki programistycznej .NET, która zawiera modele danych, które są używane w programie.
-Klasa **ConfigParameters** jest klasą do deserializacji pliku **dbcli_config.json** który zawiera dane do połączenia z bazą danych wykorzystywane w całym programie.
-Folder **TaskModels** zawiera klasy które są używane do deserializacji odpowiedzi zapytań do bazy danych.
+This is a .NET class library project that contains data models used by the program.
+The **ConfigParameters** class is used to deserialize the **dbcli_config.json** file, which contains connection data for the database used across the entire program.
+The **TaskModels** folder contains the classes used to deserialize the responses from database queries.
 
 ### DbcliProject
 
-Jest to projekt konsolowy .NET, który skleja cały solution i udostępnia interfejs cli do uruchamiania odpowiednich tasków.
-plik **Program.cs** jest odpowiednikiem main'a w innych językach programowania.
-Ten plik zawiera kod który sprawdza numer taska wprowadzony przez użytkownika, oraz uruchamia odpowiednie metody z klasy **CommandManager**, dodatkow parsowany jest plik **dbcli_config.json**.
-Klasa **CommandManager** jest główną klasą sklejającą cały projekt.
-Każda z metod w tej klasie odpowiada jednemu z zadań które mieliśmy do wykonania lub przygotowaniu bazy danych.
-To w tej klasie odbywa się również parsowanie komend z argumentów wprowadzonych przez użytkownika.
+This is a .NET console project that ties the entire solution together and provides the CLI interface for running the appropriate tasks.
+The **Program.cs** file is the equivalent of `main` in other programming languages.
+This file contains the code that reads the task number entered by the user and calls the appropriate method from the **CommandManager** class. It also parses the **dbcli_config.json** file.
+The **CommandManager** class is the main class linking the entire project.
+Each method in this class corresponds to one of the tasks we had to complete or to database preparation.
+This class also handles parsing commands from user input arguments.
 
-Generalnie zasada tego jest taka że w **Program.cs** tworzymy instancję **CommandManager**a, a następnie sprawdzamy numer tasku wprowadzony przez użytkownika.
-Switch case następnie uruchamia odpowiednią metodę z **CommandManager**'a.
+The general structure is that **Program.cs** creates an instance of **CommandManager**, then checks the task number entered by the user.
+A switch-case then runs the appropriate **CommandManager** method.
 
-Aby mieć jednolity interfejs cli dodaliśmy odpowiednio:
-./dbcli 0 fix - do uruchamiania naprawy .csv
-./dbcli 0 load - do ładowania danych do bazy danych
+To keep a unified CLI interface we added the following:
 
-Pozostałe taski są opisane w pliku ze specyfikacją projektu, ale tutaj wylistujemy przykładowe użycia **dbcli**:
+- `./dbcli 0 fix` – repairs the .csv  
+- `./dbcli 0 load` – loads data into the database
 
-- ./dbcli 1 "1880s_films"
-- ./dbcli 2 "1880s_films"
-- ./dbcli 3 "1880s_films"
-- ./dbcli 4 "1889_films"
-- ./dbcli 5 "1889_films"
-- ./dbcli 6 "1889_films"
-- ./dbcli 7
-- ./dbcli 8
-- ./dbcli 9
-- ./dbcli 10 10
-- ./dbcli 11
-- ./dbcli 12 "1889_films" "1890s_films"
-- ./dbcli 13 "1889_films" 50
-- ./dbcli 14 "1880s_films" "1920s_films"
-- ./dbcli 15 "1880s_films" "1920s_films"
-- ./dbcli 16 "Tourism_in_Uttarakhand" 1
-- ./dbcli 17 "19th-century_works" "1887_directorial_debut_films"'
-- ./dbcli 18 "19th-century_works" "1887_directorial_debut_films" 15
+Additional example uses of **dbcli**:
 
-## Kompilacja, uruchomienie, oraz dodatkowe wymagania
+- `./dbcli 1 "1880s_films"`
+- `./dbcli 2 "1880s_films"`
+- `./dbcli 3 "1880s_films"`
+- `./dbcli 4 "1889_films"`
+- `./dbcli 5 "1889_films"`
+- `./dbcli 6 "1889_films"`
+- `./dbcli 7`
+- `./dbcli 8`
+- `./dbcli 9`
+- `./dbcli 10 10`
+- `./dbcli 11`
+- `./dbcli 12 "1889_films" "1890s_films"`
+- `./dbcli 13 "1889_films" 50`
+- `./dbcli 14 "1880s_films" "1920s_films"`
+- `./dbcli 15 "1880s_films" "1920s_films"`
+- `./dbcli 16 "Tourism_in_Uttarakhand" 1`
+- `./dbcli 17 "19th-century_works" "1887_directorial_debut_films"`
+- `./dbcli 18 "19th-century_works" "1887_directorial_debut_films" 15`
 
-Aby zkompilować aplikację należy użyć komendy:
+## Compilation, execution, and additional requirements
+
+To compile the application, use the command:
 
 ```bash
 mkdir publish
@@ -313,27 +315,30 @@ dotnet build
 dotnet publish -c Release -r linux-x64 --self-contained /p:PublishSingleFile=true -o ./publish/
 ```
 
-Teraz w folderze publish znajduje się plik wykonywalny **dbcli**.
-Aby aplikacja działała poprawnie należy w tym samym folderze mieć folder Resources/ w którym znajdują się pliki **taxonomy_iw.csv** oraz **popularity_iw.csv**, oraz plik **dbcli_config.json**.
-Aby uruchomić binarkę należy użyć komend w sposób pokazany w sekcji powyżej.
+Now the **publish** folder contains the executable **dbcli**.
+For the application to run correctly, the same directory must contain a **Resources/** folder with the **taxonomy_iw.csv** and **popularity_iw.csv** files, as well as the **dbcli_config.json** file.
+To run the binary, use the commands shown in the previous section.
 
-## Problemy napotkane podczas implementacji
+## Problems encountered during implementation
 
-### Implementacja w języku Rust i problem z biblioteką arangors
+### Implementing in Rust and issues with the arangors library
 
-Pierwszym językiem programowania którym próbowaliśmy zaimplementować nasze rozwiązanie był Rust.
-Zdecydowaliśmy się na Rusta ponieważ jest to język który jest bardzo szybki, oraz ma bardzo dobrą obsługę wielowątkowości.
-Niestety biblioteka arangors, która jest oficjalną biblioteką do komunikacji z bazą ArangoDB była bardzo słabo udokumentowana, duża część funkcjonalności była nieopisana poza sygnaturą funkcji.
-Ponadto nie było żadnych przykładów użycia tej biblioteki więc trudno było zrozumieć jak z niej korzystać.
-Po godzinach prób zdecydowaliśmy się na zmianę języka programowania.
+The first programming language we attempted to use for our solution was Rust.
+We chose Rust because it is extremely fast and provides excellent multithreading support.
+Unfortunately, the **arangors** library, which is the official library for communicating with the ArangoDB database, was very poorly documented; much of its functionality had no explanation beyond the function signatures.
+Additionally, there were no usage examples, so it was difficult to understand how to use the library.
+After several hours of trying, we decided to switch to another programming language.
 
-### Postawienie Docker'a z ArangoDB i naszym projektem
+### Running Docker with ArangoDB and our project
 
-Problem głównie polegał na tym że nie mieliśmy doświadczenia z Docker'em, więc próby rozwiązania problemów związanych z kontenerami były praktycznie niemożliwe.
+The main issue was that we had no real experience with Docker, so trying to resolve container-related issues was nearly impossible.
 
-### Populacja bazy danych
+### Populating the database
 
-Na początku mysleliśmy że dokumenty symbolizujące node'y w bazie danych mogą mieć dowolne klucze, ale okazało się że klucze muszą spełniać pewne wymogi znakowe, tak jak opisaliśmy wcześniej.
+At first, we thought that documents representing nodes in the database could have arbitrary keys.  
+However, it turned out that keys must meet certain character requirements, as described earlier.
+
+We initially expected documents like this:
 
 ```json
 {
@@ -342,56 +347,58 @@ Na początku mysleliśmy że dokumenty symbolizujące node'y w bazie danych mog�
 }
 ```
 
-Tak liczyliśmy że będziemy reprezentować dokumnety, niestet ostatecznie musiały one wyglądać tak:
+Unfortunately, they had to look like this:
 
 ```json
 {
-  "_key": 0000052a-168e-41c0-8fc9-0058b0bd1199,
+  "_key": "0000052a-168e-41c0-8fc9-0058b0bd1199",
   "name": "People_from_Al-Qassim_Province",
   "popularity_score": 31739
 }
 ```
 
-## Architektura wewnętrzna bazy w ArangoDB
+## Internal architecture of the database in ArangoDB
 
-Aby pracować na grfach w bazie ArangoDB musimy zdefiniować odpowiednie kolekcje reprezentujące node'y oraz edge'y, oraz trzeba zadeklarować graf który będzie zawierał te kolekcje.
+To work with graphs in ArangoDB, we must define the appropriate collections representing nodes and edges, and we must declare the graph that includes these collections.
 
-## Metodyka do naprawy pliku popularity_iw.csv
+## Methodology for fixing the popularity_iw.csv file
 
-Podczas zajęć ustalających testy wydajnościowe naszych rozwiązań ustaliliśmy że plik **taxonomy_iw.csv** jest poprawny, natomiast jeżeli rekordy pliku **popularity_iw.csv** można zignorować jeżeli się nie zgadzają z pierwszym.
-Aby można było normalnie załadować dane z pliku **popularity_iw.csv** użyliśmy tych reguł:
+During the performance testing sessions for our solutions, we agreed that the **taxonomy_iw.csv** file is correct, and that records in **popularity_iw.csv** can be ignored if they do not match the first file.
+To load data from **popularity_iw.csv** correctly, we applied the following rules:
 
-```c# 
-  string newLine = line.Replace("\"", "");
-  newLine = "\"" + newLine.Replace(",", "\",");
-  string outputString = newLine + "\n";
+```c#
+string newLine = line.Replace("\"", "");
+newLine = "\"" + newLine.Replace(",", "\",");
+string outputString = newLine + "\n";
 ```
 
-## Wydajność, oraz miejsce na poprawę
+## Performance and areas for improvement
 
-### Inicjalizacja
+### Initialization
 
-Inicjalizacja bazy danych jest dosyć wolna, za każdym raze trwa ona około 10 minut.
-Długi czas jest prawdopodobnie częściowo spowodowany tym że narpiew wysyłamy insert'y z node'ami, a następnie dopiero z edge'ami.
-Jednakże porównując z kolegą który kożystał z interfejsu przeglądarkowego baza danych jest inicjalizowana w podobnym czasie (ok. 7 minut).
+Database initialization is quite slow; each time it takes around 10 minutes.
+The long time is probably partially caused by inserting nodes first and then edges afterwards.
+However, compared to a colleague using the browser interface, the initialization time is similar (about 7 minutes).
 
-### Parsowanie komend
+### Command parsing
 
-Parsowanie komend z argumentów wprowadzonych przez użytkownika jest zrobione dosyć prymitywnie, można by to poprawić na przykład używając biblioteki do parsownaia komend commandline'owych.
+Parsing commands from user-provided arguments is implemented quite primitively.  
+This could be improved by using a dedicated command-line parsing library.
 
-### Populacja bazy danych
+### Database population
 
-Tak jak wspomnieliśmy wcześniej populacja bazy danych jest zrobiona w sposób dosyć niewydajny.
-Zamiast zapisywać dane z **taxonomy_iw.csv** do pamięci można by było zapisywać je od razu do bazy danych i w pamięci przechowywać tylko node'y i popularność z **popularity_iw.csv**.
+As mentioned earlier, database population is implemented rather inefficiently.
+Instead of loading data from **taxonomy_iw.csv** into memory, it could be written directly into the database, keeping only the nodes and popularity values from **popularity_iw.csv** in memory.
 
-### Zapytania do bazy danych
+### Database queries
 
-Jeżeli zapytanie query do bazy danych nie zwraca żadnych wyników to lecą null exception w naszym programie, nie wpływ to na jego dalsża działalność, ale jest to coś co można by było poprawić.
+If a database query returns no results, a null exception is thrown in our program.  
+This does not affect further execution, but it is something that could be improved.
 
 ### Exception handling
 
-W naszym programie exception handling jest zrobiony dosyć amatorsko, jest to coś co można by było poprawić.
+Exception handling in our program is done rather amateurishly and could be meaningfully improved.
 
-## Podsumowanie
+## Summary
 
-Projekt był dla nas bardzo ciekawym wyzwaniem, zarówno jak poprawnie zrobić architektórę programu, jak również w jaki sposób poprawnie populować bazę danych.
+The project was a very interesting challenge for us, both in designing the correct program architecture and in figuring out how to properly populate the database.
